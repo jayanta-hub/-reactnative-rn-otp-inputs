@@ -222,7 +222,7 @@ const ReactOtpInput = props => {
   );
 };
 
-OtpInput.propTypes = {
+ReactOtpInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   pinCount: PropTypes.number.isRequired,
   secureTextEntry: PropTypes.bool,
@@ -240,7 +240,7 @@ OtpInput.propTypes = {
   Second: PropTypes.number,
 };
 
-OtpInput.defaultProps = {
+ReactOtpInput.defaultProps = {
   /**
    * ? not required, this prop mentioned as required in propTypes
    */
