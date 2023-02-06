@@ -41,7 +41,6 @@ const OtpInput = props => {
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const [minute, setMinute] = useState(Minute);
   const [second, setSecond] = useState(Second);
-
   const ChangeHandler = (e, index) => {
     const {text} = e.nativeEvent;
     const newOtp = [...otp];

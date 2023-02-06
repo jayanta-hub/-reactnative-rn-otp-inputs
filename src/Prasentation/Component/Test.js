@@ -1,4 +1,4 @@
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import React, {useState} from 'react';
 import styles from './ReactOtpInput/styles';
 import ReactOtpInput from '../../Prasentation/Component/ReactOtpInput/ReactOtpInput';
@@ -18,7 +18,7 @@ const Test = () => {
         }}>
         <ReactOtpInput
           pinCount={4} //Number of digits in the component
-          secureTextEntry={false} //Hide contents of text fields
+          secureTextEntry={false}
           onSubmit={OnSubmit}
           autoSubmit={true} // Call a function after fill all field
           mode="rectangle"
@@ -41,9 +41,9 @@ const Test = () => {
           // }}
           // ButtonTitle="Submit"
         />
-        <Text style={{marginLeft: scale(30), marginTop: scale(20)}}>
+        {/* <Text style={{marginLeft: scale(30), marginTop: scale(20)}}>
           Opt: {value}
-        </Text>
+        </Text> */}
       </View>
     </View>
   );
