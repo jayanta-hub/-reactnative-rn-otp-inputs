@@ -8,6 +8,7 @@
 
 import React from 'react';
 import OtpInput from './src/Prasentation/Component/ReactOtpInput/ReactOtpInput';
+import Test from './src/Prasentation/Component/Test';
 // import Test from './src/Prasentation/Component/Test';
 // import ReactOtpInput from './src/ReactOtpInput/ReactOtpInput';
 
@@ -15,7 +16,8 @@ import OtpInput from './src/Prasentation/Component/ReactOtpInput/ReactOtpInput';
  * LTI update could not be added via codemod */
 
 const App = () => {
-  return <OtpInput />;
+  return <Test />;
+  // return <OtpInput />;
 };
 
 export default App;

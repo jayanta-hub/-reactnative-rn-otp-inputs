@@ -6,9 +6,7 @@ import {scale} from '../../Infrastructure/utils/screenUtility';
 
 const Test = () => {
   const [value, setValue] = useState('');
-  const OnSubmit = e => {
-    console.log('parent', e);
-  };
+  const OnSubmit = e => {};
   return (
     <View style={styles.container}>
       <View
@@ -18,17 +16,34 @@ const Test = () => {
           marginTop: scale(50),
           justifyContent: 'center',
         }}>
-        <Text>skhdbsbdkab</Text>
         <ReactOtpInput
-          pinCount={5} //Number of digits in the component
+          pinCount={4} //Number of digits in the component
           secureTextEntry={false} //Hide contents of text fields
           onSubmit={OnSubmit}
           autoSubmit={true} // Call a function after fill all field
           mode="rectangle"
-          borderRadius={4} // Rectanlge Border Radius
+          borderRadius={6} // Rectanlge Border Radius
           onChageValue={setValue}
+          // Second={10}
+          // Minute={2}
+          // buttonStyle={{
+          //   flex: 1,
+          //   borderRadius: 6,
+          //   fontsize: scale(8),
+          //   height: scale(40),
+          //   backgroundColor: 'green',
+          //   borderColor: '',
+          //   fontFamily: 'SourceSansPro-Regular',
+          //   marginTop: scale(10),
+          //   alignItems: 'center',
+          //   flexDirection: 'row',
+          //   justifyContent: 'center',
+          // }}
+          // ButtonTitle="Submit"
         />
-        <Text>skhdbsbdkab</Text>
+        <Text style={{marginLeft: scale(30), marginTop: scale(20)}}>
+          Opt: {value}
+        </Text>
       </View>
     </View>
   );
