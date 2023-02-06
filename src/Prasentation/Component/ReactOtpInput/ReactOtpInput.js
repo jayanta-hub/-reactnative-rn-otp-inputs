@@ -13,7 +13,7 @@ import {
 } from '../../../Infrastructure/utils/screenUtility';
 import PropTypes from 'prop-types';
 import CustomButton from '../../../Infrastructure/ComonComponent/CustomButton';
-const OtpInput = props => {
+const ReactOtpInput = props => {
   const {
     onSubmit,
     secureTextEntry,
@@ -259,7 +259,7 @@ OtpInput.defaultProps = {
   Second: 0,
   onChageValue: () => {},
 };
-export default OtpInput;
+export default ReactOtpInput;
 
 const styles = StyleSheet.create({
   container: {
