@@ -1,6 +1,6 @@
 {
   "name": "@reactnative/rn-otp-inputs",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React Native Otp Inputs",
   "main": "index.js",
   "scripts": {
