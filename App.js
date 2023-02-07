@@ -6,8 +6,8 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import RnOtpInput from './src/Prasentation/Component/ReactOtpInput/RnOtpInput';
+import React from "react";
+import RnOtpInput from "./src/Prasentation/Component/ReactOtpInput/RnOtpInput";
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
