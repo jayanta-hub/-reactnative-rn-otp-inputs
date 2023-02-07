@@ -1,0 +1,16 @@
+{
+  "name": "@reactnative/rn-otp-inputs",
+  "version": "1.0.0",
+  "description": "React Native Otp Inputs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jayantagaru <jayanta.garu@gmail.com>",
+  "license": "ISC",
+  "peerDependencies": {
+    "prop-types": "^15.8.1",
+    "react": "^18.1.0",
+    "react-native": "^0.70.5"
+  }
+}
