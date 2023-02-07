@@ -2,7 +2,6 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {scale} from '../utils/screenUtility';
 import PropTypes from 'prop-types';
-
 const CustomButton = props => {
   const {
     borderRadius,
