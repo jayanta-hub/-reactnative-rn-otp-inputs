@@ -12,7 +12,7 @@ import RnOtpInput from './src/Prasentation/Component/ReactOtpInput/RnOtpInput';
  * LTI update could not be added via codemod */
 
 const App = () => {
-  return <RnOtpInput />;
+  return <RnOtpInput pinCount={5} />;
 };
 
 export default App;
