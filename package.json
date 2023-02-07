@@ -1,6 +1,6 @@
 {
   "name": "@reactnative/rn-otp-inputs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React Native Otp Inputs",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/jayanta-hub/rn-otp-inputs/issues"
   },
-  "homepage": "https://github.com/jayanta-hub/rn-otp-inputs#readme"
+  "homepage": "https://github.com/jayanta-hub/rn-otp-inputs#readme",
+  "keywords": [
+    "rn-otp-inputs"
+  ]
 }
