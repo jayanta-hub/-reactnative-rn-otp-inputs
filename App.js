@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import ReactOtpInput from './src/Prasentation/Component/ReactOtpInput/ReactOtpInput';
+import RnOtpInput from './src/Prasentation/Component/ReactOtpInput/RnOtpInput';
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
 const App = () => {
-  return <ReactOtpInput />;
+  return <RnOtpInput />;
 };
 
 export default App;

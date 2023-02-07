@@ -13,7 +13,7 @@ import {
 } from '../../../Infrastructure/utils/screenUtility';
 import PropTypes from 'prop-types';
 import CustomButton from '../../../Infrastructure/ComonComponent/CustomButton';
-const ReactOtpInput = props => {
+const RnOtpInput = props => {
   const {
     onSubmit,
     secureTextEntry,
@@ -222,7 +222,7 @@ const ReactOtpInput = props => {
   );
 };
 
-ReactOtpInput.propTypes = {
+RnOtpInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   pinCount: PropTypes.number.isRequired,
   secureTextEntry: PropTypes.bool,
@@ -240,7 +240,7 @@ ReactOtpInput.propTypes = {
   Second: PropTypes.number,
 };
 
-ReactOtpInput.defaultProps = {
+RnOtpInput.defaultProps = {
   /**
    * ? not required, this prop mentioned as required in propTypes
    */
@@ -259,7 +259,7 @@ ReactOtpInput.defaultProps = {
   Second: 0,
   onChageValue: () => {},
 };
-export default ReactOtpInput;
+export default RnOtpInput;
 
 const styles = StyleSheet.create({
   container: {
