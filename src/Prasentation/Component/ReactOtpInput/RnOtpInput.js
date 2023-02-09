@@ -21,7 +21,7 @@ const RnOtpInput = props => {
     mode,
     borderRadius,
     onChageValue,
-    bgcolor,
+    bgColor,
     textColor,
     borderWidth,
     borderColor,
@@ -136,7 +136,7 @@ const RnOtpInput = props => {
                       ? borderRadius
                       : borderRadius,
                   ),
-                  backgroundColor: bgcolor,
+                  backgroundColor: bgColor,
                   marginHorizontal:
                     Platform.isPad || guidelineBaseWidth > 500
                       ? scale(40)
@@ -190,7 +190,7 @@ const RnOtpInput = props => {
                         ? borderRadius
                         : borderRadius,
                     ),
-                    backgroundColor: bgcolor,
+                    backgroundColor: bgColor,
                     paddingBottom: 0,
                     paddingTop: 0,
                   }}
@@ -230,7 +230,7 @@ RnOtpInput.propTypes = {
   mode: PropTypes.string,
   borderRadius: PropTypes.number,
   onChageValue: PropTypes.func,
-  bgcolor: PropTypes.string,
+  bgColor: PropTypes.string,
   textColor: PropTypes.string,
   borderColor: PropTypes.string,
   keyboardType: PropTypes.string,
@@ -249,7 +249,7 @@ RnOtpInput.defaultProps = {
   autoSubmit: false,
   mode: 'rectangle',
   borderRadius: 6,
-  bgcolor: '#D9E3F6',
+  bgColor: '#D9E3F6',
   textColor: '#000000',
   borderWidth: 1,
   borderColor: '#A768F1',
