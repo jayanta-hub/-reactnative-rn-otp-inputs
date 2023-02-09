@@ -213,7 +213,7 @@ const RnOtpInput = props => {
           </TouchableOpacity>
         </View>
         <CustomButton
-          title={ButtonTitle}
+          title={buttonTitle}
           buttonStyle={props.buttonStyle}
           props={props}
         />
