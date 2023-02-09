@@ -1,4 +1,5 @@
 # React Native OTP Inputs
+<img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/rn-otp-inputs">
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/jayanta-hub?style=social">
 
 **rn-otp-inputs** is a tiny Javascript library which provides an elegant UI for the end user to input one time passcode (OTP). It handles autocomplete functionality and it display remaining time for OTP. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI, but you can always customize the appearance as you like.
