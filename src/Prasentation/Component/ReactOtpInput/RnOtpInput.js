@@ -235,7 +235,7 @@ RnOtpInput.propTypes = {
   borderColor: PropTypes.string,
   keyboardType: PropTypes.string,
   borderWidth: PropTypes.number,
-  ButtonTitle: PropTypes.string,
+  buttonTitle: PropTypes.string,
   Minute: PropTypes.number,
   Second: PropTypes.number,
 };
@@ -254,7 +254,7 @@ RnOtpInput.defaultProps = {
   borderWidth: 1,
   borderColor: '#A768F1',
   keyboardType: 'number-pad',
-  ButtonTitle: 'Verify & Proceed',
+  buttonTitle: 'Verify & Proceed',
   Minute: 1,
   Second: 0,
   onChageValue: () => {},
