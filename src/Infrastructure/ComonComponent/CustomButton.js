@@ -17,6 +17,7 @@ const CustomButton = props => {
     marginHorizontal,
     marginVertical,
     buttonStyle,
+    onSubmit
   } = props;
 
   return (
@@ -29,6 +30,7 @@ const CustomButton = props => {
         marginHorizontal: scale(30),
       }}>
       <TouchableOpacity
+        onPress={onSubmit}
         style={
           Object.keys(buttonStyle).length === 0
             ? {

@@ -21,12 +21,12 @@ const RnOtpInput = props => {
     mode,
     borderRadius,
     onChageValue,
-    bgcolor,
+    bgColor,
     textColor,
     borderWidth,
     borderColor,
     keyboardType,
-    ButtonTitle,
+    buttonTitle,
     Minute,
     Second,
   } = props;
@@ -136,7 +136,7 @@ const RnOtpInput = props => {
                       ? borderRadius
                       : borderRadius,
                   ),
-                  backgroundColor: bgcolor,
+                  backgroundColor: bgColor,
                   marginHorizontal:
                     Platform.isPad || guidelineBaseWidth > 500
                       ? scale(40)
@@ -190,7 +190,7 @@ const RnOtpInput = props => {
                         ? borderRadius
                         : borderRadius,
                     ),
-                    backgroundColor: bgcolor,
+                    backgroundColor: bgColor,
                     paddingBottom: 0,
                     paddingTop: 0,
                   }}
@@ -213,7 +213,7 @@ const RnOtpInput = props => {
           </TouchableOpacity>
         </View>
         <CustomButton
-          title={ButtonTitle}
+          title={buttonTitle}
           buttonStyle={props.buttonStyle}
           props={props}
         />
@@ -230,12 +230,12 @@ RnOtpInput.propTypes = {
   mode: PropTypes.string,
   borderRadius: PropTypes.number,
   onChageValue: PropTypes.func,
-  bgcolor: PropTypes.string,
+  bgColor: PropTypes.string,
   textColor: PropTypes.string,
   borderColor: PropTypes.string,
   keyboardType: PropTypes.string,
   borderWidth: PropTypes.number,
-  ButtonTitle: PropTypes.string,
+  buttonTitle: PropTypes.string,
   Minute: PropTypes.number,
   Second: PropTypes.number,
 };
@@ -249,12 +249,12 @@ RnOtpInput.defaultProps = {
   autoSubmit: false,
   mode: 'rectangle',
   borderRadius: 6,
-  bgcolor: '#D9E3F6',
+  bgColor: '#D9E3F6',
   textColor: '#000000',
   borderWidth: 1,
   borderColor: '#A768F1',
   keyboardType: 'number-pad',
-  ButtonTitle: 'Verify & Proceed',
+  buttonTitle: 'Verify & Proceed',
   Minute: 1,
   Second: 0,
   onChageValue: () => {},
