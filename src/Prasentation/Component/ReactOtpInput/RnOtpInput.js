@@ -26,7 +26,7 @@ const RnOtpInput = props => {
     borderWidth,
     borderColor,
     keyboardType,
-    ButtonTitle,
+    buttonTitle,
     Minute,
     Second,
   } = props;
