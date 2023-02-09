@@ -5,15 +5,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native';
-import React, {useRef, useState, useEffect} from 'react';
+} from "react-native";
+import React, { useRef, useState, useEffect } from "react";
 import {
   guidelineBaseWidth,
   scale,
-} from '../../../Infrastructure/utils/screenUtility';
-import PropTypes from 'prop-types';
-import CustomButton from '../../../Infrastructure/ComonComponent/CustomButton';
-const RnOtpInput = props => {
+} from "../../../Infrastructure/utils/screenUtility";
+import PropTypes from "prop-types";
+const RnOtpInput = (props) => {
   const {
     onSubmit,
     secureTextEntry,
@@ -21,7 +20,7 @@ const RnOtpInput = props => {
     mode,
     borderRadius,
     onChageValue,
-    bgColor,
+    bgcolor,
     textColor,
     borderWidth,
     borderColor,
@@ -29,6 +28,20 @@ const RnOtpInput = props => {
     buttonTitle,
     Minute,
     Second,
+    height,
+    fontsize,
+    textbgcolor,
+    borderRadiusColor,
+    fontFamily,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginHorizontal,
+    marginVertical,
+    buttonStyle,
+    btnBgColor,
+    onlyResendOtp,
+    onResentClick,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
@@ -36,13 +49,13 @@ const RnOtpInput = props => {
       props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
         ? props.pinCount
         : 4,
-    ).fill(''),
+    ).fill(""),
   );
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const [minute, setMinute] = useState(Minute);
   const [second, setSecond] = useState(Second);
   const ChangeHandler = (e, index) => {
-    const {text} = e.nativeEvent;
+    const { text } = e.nativeEvent;
     const newOtp = [...otp];
     newOtp[index] = text;
     setOtp(newOtp);
@@ -55,12 +68,12 @@ const RnOtpInput = props => {
      * ? For AutoSubmit (After Fill All Input we Can call a Fun)
      */
     activeOtpIndex === props.pinCount - 1
-      ? onChageValue(newOtp.join('').toString())
+      ? onChageValue(newOtp.join("").toString())
       : null;
     autoSubmit
       ? activeOtpIndex === props.pinCount - 1
         ? onSubmit()
-          ? onSubmit(newOtp.join('').toString())
+          ? onSubmit(newOtp.join("").toString())
           : null
         : null
       : null;
@@ -69,7 +82,7 @@ const RnOtpInput = props => {
     /**
      * ? When Enter BackSpace
      */
-    e.nativeEvent.key === 'Backspace' ? setActiveOtpIndex(index - 1) : null;
+    e.nativeEvent.key === "Backspace" ? setActiveOtpIndex(index - 1) : null;
   };
 
   /**
@@ -82,7 +95,7 @@ const RnOtpInput = props => {
         props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
           ? props.pinCount
           : 4,
-      ).fill(''),
+      ).fill(""),
     );
   }, [props.pinCount]);
 
@@ -130,13 +143,13 @@ const RnOtpInput = props => {
                     activeOtpIndex === index ? borderWidth : 0,
                   ),
                   borderRadius: scale(
-                    mode === 'circle'
+                    mode === "circle"
                       ? 50
-                      : mode === 'rectangle'
+                      : mode === "rectangle"
                       ? borderRadius
                       : borderRadius,
                   ),
-                  backgroundColor: bgColor,
+                  backgroundColor: bgcolor,
                   marginHorizontal:
                     Platform.isPad || guidelineBaseWidth > 500
                       ? scale(40)
@@ -148,7 +161,8 @@ const RnOtpInput = props => {
 
                   padding: scale(0.5),
                   borderColor: borderColor,
-                }}>
+                }}
+              >
                 <TextInput
                   key={index}
                   ref={index === activeOtpIndex ? inputRef : null}
@@ -157,8 +171,8 @@ const RnOtpInput = props => {
                   maxLength={1}
                   keyboardType={keyboardType}
                   editable={true}
-                  onChange={e => ChangeHandler(e, index)}
-                  onKeyPress={e => OnKeyHandler(e, index)}
+                  onChange={(e) => ChangeHandler(e, index)}
+                  onKeyPress={(e) => OnKeyHandler(e, index)}
                   secureTextEntry={secureTextEntry}
                   style={{
                     height: scale(
@@ -179,18 +193,18 @@ const RnOtpInput = props => {
                         ? 45
                         : 60,
                     ),
-                    textAlign: 'center',
+                    textAlign: "center",
                     fontSize: scale(22),
-                    fontWeight: '500',
+                    fontWeight: "500",
                     color: textColor,
                     borderRadius: scale(
-                      mode === 'circle'
+                      mode === "circle"
                         ? 50
-                        : mode === 'rectangle'
+                        : mode === "rectangle"
                         ? borderRadius
                         : borderRadius,
                     ),
-                    backgroundColor: bgColor,
+                    backgroundColor: bgcolor,
                     paddingBottom: 0,
                     paddingTop: 0,
                   }}
@@ -199,24 +213,98 @@ const RnOtpInput = props => {
             );
           })}
         </View>
-        <View style={styles.containerWrap}>
-          <Text style={styles.formTitle}>
-            Time Remaining: {minute < 10 ? `0${minute}` : minute}:
-            {second < 10 ? `0${second}` : second}
-          </Text>
+        <View
+          style={{
+            ...styles.containerWrap,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <TouchableOpacity
-            disabled={minute === 0 && second === 0 ? false : true}
+            onPress={onResentClick}
+            disabled={
+              onlyResendOtp
+                ? false
+                : minute === 0 && second === 0
+                ? false
+                : true
+            }
             style={{
-              opacity: minute === 0 && second === 0 ? 1 : 0.5,
-            }}>
-            <Text style={styles.formTitle}>Resend OPT</Text>
+              opacity: onlyResendOtp
+                ? 1
+                : minute === 0 && second === 0
+                ? 1
+                : 0.5,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {/* <Text style={styles.formTitle}>{`Resend OPT in ${minute < 10 ? minute : minute}:${second < 10 ? second : second} sec`} */}
+            {/* </Text> */}
+            <Text style={styles.formTitle}>
+              Resend OPT
+              {minute === 0 && second === 0 ? null : onlyResendOtp ? null : (
+                <Text style={styles.formTitle}>
+                  {" "}
+                  in{" "}
+                  {minute !== 0 ? `${minute}:${second} sec` : ` ${second} sec`}
+                </Text>
+              )}
+            </Text>
           </TouchableOpacity>
         </View>
-        <CustomButton
-          title={buttonTitle}
-          buttonStyle={props.buttonStyle}
-          props={props}
-        />
+        <View
+          style={{
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: scale(10),
+            marginHorizontal: scale(30),
+          }}
+        >
+          <TouchableOpacity
+            onPress={onSubmit}
+            disabled={
+              onlyResendOtp
+                ? false
+                : activeOtpIndex === props.pinCount
+                ? false
+                : true
+            }
+            style={
+              Object?.keys(buttonStyle)?.length === 0
+                ? {
+                    flex: 1,
+                    backgroundColor: btnBgColor,
+                    height: height,
+                    fontFamily: fontFamily,
+                    fontSize: fontsize,
+                    borderColor: borderRadiusColor,
+                    borderRadius: borderRadius,
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginTop: marginTop,
+                    marginBottom: marginBottom,
+                    marginLeft: marginLeft,
+                    marginHorizontal: marginHorizontal,
+                    marginVertical: marginVertical,
+                    opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+                  }
+                : buttonStyle
+            }
+          >
+            <Text
+              style={{
+                fontFamily: "SourceSansPro-SemiBold",
+                fontSize: scale(15),
+                color: "#FFFFFF",
+              }}
+            >
+              {buttonTitle}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -230,7 +318,7 @@ RnOtpInput.propTypes = {
   mode: PropTypes.string,
   borderRadius: PropTypes.number,
   onChageValue: PropTypes.func,
-  bgColor: PropTypes.string,
+  bgcolor: PropTypes.string,
   textColor: PropTypes.string,
   borderColor: PropTypes.string,
   keyboardType: PropTypes.string,
@@ -238,6 +326,22 @@ RnOtpInput.propTypes = {
   buttonTitle: PropTypes.string,
   Minute: PropTypes.number,
   Second: PropTypes.number,
+  borderRadius: PropTypes.number,
+  height: PropTypes.number,
+  fontsize: PropTypes.number,
+  onChageValue: PropTypes.func,
+  textbgcolor: PropTypes.string,
+  borderRadiusColor: PropTypes.string,
+  fontFamily: PropTypes.string,
+  marginTop: PropTypes.number,
+  marginBottom: PropTypes.number,
+  marginLeft: PropTypes.number,
+  marginHorizontal: PropTypes.number,
+  marginVertical: PropTypes.number,
+  buttonStyle: PropTypes.object,
+  btnBgColor: PropTypes.string,
+  onlyResendOtp: PropTypes.bool,
+  onResentClick: PropTypes.func,
 };
 
 RnOtpInput.defaultProps = {
@@ -247,17 +351,32 @@ RnOtpInput.defaultProps = {
   // pinCount: 0,
   secureTextEntry: false,
   autoSubmit: false,
-  mode: 'rectangle',
+  mode: "rectangle",
   borderRadius: 6,
-  bgColor: '#D9E3F6',
-  textColor: '#000000',
+  bgcolor: "#D9E3F6",
+  textColor: "#000000",
   borderWidth: 1,
-  borderColor: '#A768F1',
-  keyboardType: 'number-pad',
-  buttonTitle: 'Verify & Proceed',
+  borderColor: "#A768F1",
+  keyboardType: "number-pad",
+  buttonTitle: "Verify & Proceed",
   Minute: 1,
   Second: 0,
   onChageValue: () => {},
+  borderRadius: 6,
+  fontsize: scale(8),
+  height: scale(40),
+  textbgcolor: "#349beb",
+  borderRadiusColor: "",
+  fontFamily: "SourceSansPro-Regular",
+  marginTop: scale(10),
+  marginBottom: scale(0),
+  marginLeft: scale(0),
+  marginHorizontal: scale(0),
+  marginVertical: scale(0),
+  buttonStyle: {},
+  btnBgColor: "#349beb",
+  onlyResendOtp: false,
+  onResentClick: () => {},
 };
 export default RnOtpInput;
 
@@ -266,15 +385,15 @@ const styles = StyleSheet.create({
     marginVertical: scale(10),
   },
   containerWrap: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: scale(10),
     marginHorizontal: scale(30),
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
   formTitle: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: "SourceSansPro-SemiBold",
     fontSize: scale(15),
-    color: '#404B69',
+    color: "#404B69",
   },
 });
