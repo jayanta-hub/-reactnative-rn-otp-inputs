@@ -13,8 +13,7 @@
 
 ### NOTES:
 
-We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should install react@^ 17.0.2, prop-types@^ 15.8.1 and react-native@^0.68.2
-
+This packgae will support react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 and upper version.
 `npm install --save prop-types@15.8.1 react@17.0.2 react-native@0.68.2` or `yarn add prop-types@15.8.1 react@17.0.2 react-native@0.68.2`
 
 ## Basic Usage
@@ -32,17 +31,17 @@ Ios Screen Short
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218087265-f5e9955a-53fa-40f9-b32a-eb55823e894b.png" /> </kbd>
 
 ```
-import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
+import RnOtpInputs from 'rn-otp-inputs';
 
 ...
 
-<RnOtpInputs  pinCount={4}  />
+<RnOtpInputs  pinCount={4} onSubmit={()=>{}} />
 ```
 
 ## More Advanced Usage
 
 ```
-import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
+import  RnOtpInputs  from  'rn-otp-inputs';
 
 ...
 const  [value,  setValue]  =  useState('');
@@ -77,21 +76,21 @@ const  [value,  setValue]  =  useState('');
 | mode                | `No`     | `String`   | mode can be rectangle, flat or circle, Default mode is rectangle.                                                                                                         |
 | secureTextEntry     | `No`     | `Boolean`  | Hide contents of text fields                                                                                                                                              |
 | autoSubmit          | `No`     | `Boolean`  | Callback when the digits are filled.Default value is false. Note: If it is true than we can get enter value from `onSubmit`.e.g. onSubmit={(value)=>{console.log(value)}} |
-| borderRadiusStyle   | `No`     | `Number`   | Change borderRadius of input field.                                                                                                                                       |
-| borderWidth         | `No`     | `Number`   | Change borderWidth of input field.                                                                                                                                        |
-| borderColor         | `No`     | `String`   | Change borderColor of input field.                                                                                                                                        |
-| borderWidth         | `No`     | `Number`   | Change borderWidth of input field.                                                                                                                                        |
-| bgColor             | `No`     | `String`   | Change background Color of input field.                                                                                                                                   |
+| borderRadiusStyle   | `No`     | `Number`   | Change Border Radius of input field.                                                                                                                                      |
+| borderWidth         | `No`     | `Number`   | Change Border Width of input field.                                                                                                                                       |
+| borderColor         | `No`     | `String`   | Change Border Color of input field.                                                                                                                                       |
+| borderWidth         | `No`     | `Number`   | Change Border Width of input field.                                                                                                                                       |
+| bgColor             | `No`     | `String`   | Change Background Color of input field.                                                                                                                                   |
 | textColor           | `No`     | `String`   | The style of the input Text.                                                                                                                                              |
 | onChageValue        | `No`     | `Function` | Callback when the digits are filled.                                                                                                                                      |
 | keyboardType        | `No`     | `String`   | Keyboard type. Default value is 'number-pad'.                                                                                                                             |
-| buttonTitle         | `No`     | `String`   | ButtonTitle.Default value is 'Verify & Proceed'.                                                                                                                          |
-| Minute              | `No`     | `Number`   | Remaining Time in minute.Default value is 1.                                                                                                                              |
-| Second              | `No`     | `Number`   | Remaining Time in Second.Default value is 0.                                                                                                                              |
+| buttonTitle         | `No`     | `String`   | Button Title . Default value is 'Verify & Proceed'.                                                                                                                       |
+| Minute              | `No`     | `Number`   | Remaining Time in minute .Default value is 1.                                                                                                                             |
+| Second              | `No`     | `Number`   | Remaining Time in Second. Default value is 0.                                                                                                                             |
 | onlyResendOtp       | `No`     | `Boolon`   | For Only Resend Otp UI View .Default value is false.                                                                                                                      |
-| onResentClick       | `No`     | `Function` | Callback when the resend button clicked.                                                                                                                                  |
-| buttonStyle         | `No`     | `object`   | The style of the button.                                                                                                                                                  |
-| buttonTitleStyle    | `No`     | `object`   | The style of the button Title.                                                                                                                                            |
+| onResentClick       | `No`     | `Function` | Callback when the Resend Button clicked.                                                                                                                                  |
+| buttonStyle         | `No`     | `object`   | The style of the Button.                                                                                                                                                  |
+| buttonTitleStyle    | `No`     | `object`   | The style of the Button Title.                                                                                                                                            |
 | resendTextStyle     | `No`     | `object`   | The style of the Resend Text.                                                                                                                                             |
 | inputHeightAndWidth | `No`     | `Number`   | Height and width of input feild.                                                                                                                                          |
 

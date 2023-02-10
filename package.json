@@ -12,9 +12,9 @@
     "react-native": "0.68.2"
   },
   "keywords": [
-    "react@^17.0.2",
-    "react-native@^0.68.2",
-    "prop-types@^15.8.1",
+    "react",
+    "react-native",
+    "prop-types",
     "one time password",
     "verifcation code",
     "rn-otp-inputs"
