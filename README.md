@@ -21,9 +21,19 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 
 [Android Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Android)
 
-<kbd> <img src="https://user-images.githubusercontent.com/105639144/218065587-e558f84a-3de0-40f5-8ee7-11d18b05166f.png" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1675947562.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1675947571.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019971.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019975.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019999.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676020002.png?raw=true" /> </kbd>
 
 [Ios Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Ios)
+
+<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-09%20at%2022.07.07.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.29.55.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.35.45.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.36.29.png?raw=true" /> </kbd>
 
 ```
 import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
