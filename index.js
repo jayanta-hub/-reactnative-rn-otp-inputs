@@ -5,6 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import {
@@ -18,7 +20,7 @@ const RnOtpInputs = (props) => {
     secureTextEntry,
     autoSubmit,
     mode,
-    borderRadius,
+    borderRadiusStyle,
     onChageValue,
     bgcolor,
     textColor,
@@ -33,6 +35,7 @@ const RnOtpInputs = (props) => {
     onResentClick,
     buttonTitleStyle,
     resendTextStyle,
+    inputHeightAndWidth,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
@@ -125,162 +128,185 @@ const RnOtpInputs = (props) => {
   }, [second, isResend]);
   return (
     <>
-      <View style={styles.container}>
-        <View style={styles.containerWrap}>
-          {otp.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{
-                  borderBottomWidth:
-                    mode === "flat"
-                      ? 1
-                      : activeOtpIndex === index
-                      ? borderWidth
-                      : 0,
-                  borderWidth: scale(
-                    mode === "flat"
-                      ? 0
-                      : activeOtpIndex === index
-                      ? borderWidth
-                      : 0,
-                  ),
-                  borderRadius: scale(
-                    mode === "circle"
-                      ? 50
-                      : mode === "flat"
-                      ? 0
-                      : mode === "rectangle"
-                      ? borderRadius
-                      : borderRadius,
-                  ),
-                  backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
-                  marginHorizontal:
-                    Platform.isPad || guidelineBaseWidth > 500
-                      ? scale(40)
-                      : scale(0),
-                  marginTop:
-                    Platform.isPad || guidelineBaseWidth > 500
-                      ? scale(20)
-                      : scale(0),
+      <SafeAreaView>
+        <ScrollView
+          nestedScrollEnabled={true}
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
+          <View style={styles.container}>
+            <View style={styles.containerWrap}>
+              {otp.map((item, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      borderBottomWidth:
+                        mode === "flat"
+                          ? 1
+                          : activeOtpIndex === index
+                          ? borderWidth
+                          : 0,
+                      borderWidth: scale(
+                        mode === "flat"
+                          ? 0
+                          : activeOtpIndex === index
+                          ? borderWidth
+                          : 0,
+                      ),
+                      borderRadius: scale(
+                        mode === "circle"
+                          ? 50
+                          : mode === "flat"
+                          ? 0
+                          : mode === "rectangle"
+                          ? borderRadiusStyle
+                          : borderRadiusStyle,
+                      ),
+                      backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                      marginHorizontal:
+                        Platform.isPad || guidelineBaseWidth > 500
+                          ? scale(40)
+                          : scale(0),
+                      marginTop:
+                        Platform.isPad || guidelineBaseWidth > 500
+                          ? scale(20)
+                          : scale(0),
 
-                  padding: scale(0.5),
-                  borderColor: borderColor,
+                      padding: scale(0.5),
+                      borderColor: borderColor,
+                    }}
+                  >
+                    <TextInput
+                      key={index}
+                      ref={index === activeOtpIndex ? inputRef : null}
+                      autoCorrect={false}
+                      value={otp[index]}
+                      maxLength={1}
+                      keyboardType={keyboardType}
+                      editable={true}
+                      onChange={(e) => ChangeHandler(e, index)}
+                      onKeyPress={(e) => OnKeyHandler(e, index)}
+                      secureTextEntry={secureTextEntry}
+                      style={{
+                        height: scale(
+                          props.pinCount === 4 && props.pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
+                              : 50
+                            : props.pinCount === 5 && props.pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
+                              : 55
+                            : props.pinCount === 6 && props.pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
+                              : 45
+                            : 50,
+                        ),
+                        width: scale(
+                          props.pinCount === 4 && props.pinCount < 7
+                            ? props.inputHeightAndWidth
+                              ? props.inputHeightAndWidth
+                              : 50
+                            : props.pinCount === 5 && props.pinCount < 7
+                            ? props.inputHeightAndWidth
+                              ? props.inputHeightAndWidth
+                              : 55
+                            : props.pinCount === 6 && props.pinCount < 7
+                            ? props.inputHeightAndWidth
+                              ? props.inputHeightAndWidth
+                              : 45
+                            : 50,
+                        ),
+                        textAlign: "center",
+                        fontSize: scale(22),
+                        fontWeight: "500",
+                        color: textColor,
+                        borderRadius: scale(
+                          mode === "circle"
+                            ? 50
+                            : mode === "flat"
+                            ? 0
+                            : mode === "rectangle"
+                            ? borderRadiusStyle
+                            : borderRadiusStyle,
+                        ),
+                        backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                        paddingBottom: 0,
+                        paddingTop: 0,
+                      }}
+                    />
+                  </View>
+                );
+              })}
+            </View>
+            <View
+              style={{
+                ...styles.containerWrap,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  setIsResend(true), onResentClick();
+                }}
+                disabled={
+                  onlyResendOtp
+                    ? false
+                    : minute === 0 && second === 0
+                    ? false
+                    : true
+                }
+                style={{
+                  opacity: onlyResendOtp
+                    ? 1
+                    : minute === 0 && second === 0
+                    ? 1
+                    : 0.5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginVertical: scale(20),
                 }}
               >
-                <TextInput
-                  key={index}
-                  ref={index === activeOtpIndex ? inputRef : null}
-                  autoCorrect={false}
-                  value={otp[index]}
-                  maxLength={1}
-                  keyboardType={keyboardType}
-                  editable={true}
-                  onChange={(e) => ChangeHandler(e, index)}
-                  onKeyPress={(e) => OnKeyHandler(e, index)}
-                  secureTextEntry={secureTextEntry}
-                  style={{
-                    height: scale(
-                      props.pinCount === 4 && props.pinCount < 7
-                        ? 60
-                        : props.pinCount === 5 && props.pinCount < 7
-                        ? 55
-                        : props.pinCount === 6 && props.pinCount < 7
-                        ? 45
-                        : 60,
-                    ),
-                    width: scale(
-                      props.pinCount === 4 && props.pinCount < 7
-                        ? 60
-                        : props.pinCount === 5 && props.pinCount < 7
-                        ? 55
-                        : props.pinCount === 6 && props.pinCount < 7
-                        ? 45
-                        : 60,
-                    ),
-                    textAlign: "center",
-                    fontSize: scale(22),
-                    fontWeight: "500",
-                    color: textColor,
-                    borderRadius: scale(
-                      mode === "circle"
-                        ? 50
-                        : mode === "flat"
-                        ? 0
-                        : mode === "rectangle"
-                        ? borderRadius
-                        : borderRadius,
-                    ),
-                    backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
-                    paddingBottom: 0,
-                    paddingTop: 0,
-                  }}
-                />
-              </View>
-            );
-          })}
-        </View>
-        <View
-          style={{
-            ...styles.containerWrap,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              setIsResend(true), onResentClick();
-            }}
-            disabled={
-              onlyResendOtp
-                ? false
-                : minute === 0 && second === 0
-                ? false
-                : true
-            }
-            style={{
-              opacity: onlyResendOtp
-                ? 1
-                : minute === 0 && second === 0
-                ? 1
-                : 0.5,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={resendTextStyle}>
-              Resend OPT
-              {minute === 0 && second === 0 ? null : onlyResendOtp ? null : (
                 <Text style={resendTextStyle}>
-                  {" "}
-                  in{" "}
-                  {minute !== 0 ? `${minute}:${second} sec` : ` ${second} sec`}
+                  Resend OPT
+                  {minute === 0 &&
+                  second === 0 ? null : onlyResendOtp ? null : (
+                    <Text style={resendTextStyle}>
+                      {" "}
+                      in{" "}
+                      {minute !== 0
+                        ? `${minute}:${second} sec`
+                        : ` ${second} sec`}
+                    </Text>
+                  )}
                 </Text>
-              )}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: scale(10),
-            marginHorizontal: scale(30),
-          }}
-        >
-          <TouchableOpacity
-            onPress={onSubmit}
-            disabled={activeOtpIndex === props.pinCount ? false : true}
-            style={{
-              ...buttonStyle,
-              opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
-            }}
-          >
-            <Text style={buttonTitleStyle}>{buttonTitle}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "center",
+                marginTop: scale(10),
+                marginHorizontal: scale(30),
+              }}
+            >
+              <TouchableOpacity
+                onPress={onSubmit}
+                disabled={activeOtpIndex === props.pinCount ? false : true}
+                style={{
+                  ...buttonStyle,
+                  opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+                }}
+              >
+                <Text style={buttonTitleStyle}>{buttonTitle}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 };
@@ -300,7 +326,7 @@ RnOtpInputs.propTypes = {
   buttonTitle: PropTypes.string,
   Minute: PropTypes.number,
   Second: PropTypes.number,
-  borderRadius: PropTypes.number,
+  borderRadiusStyle: PropTypes.number,
   buttonStyle: PropTypes.object,
   onlyResendOtp: PropTypes.bool,
   onResentClick: PropTypes.func,
@@ -319,15 +345,14 @@ RnOtpInputs.defaultProps = {
   bgcolor: "#D9E3F6",
   textColor: "#000000",
   borderWidth: 1,
+  borderRadiusStyle: 6,
   borderColor: "#A768F1",
   keyboardType: "number-pad",
   buttonTitle: "Verify & Proceed",
   Minute: 1,
   Second: 0,
   onChageValue: () => {},
-  onSubmit: (e) => {
-    console.log("Enter Value :-", e);
-  },
+  onSubmit: (e) => {},
   buttonStyle: {
     flex: 1,
     backgroundColor: "#349beb",
