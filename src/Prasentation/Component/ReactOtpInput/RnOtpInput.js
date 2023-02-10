@@ -28,20 +28,10 @@ const RnOtpInput = (props) => {
     buttonTitle,
     Minute,
     Second,
-    height,
-    fontsize,
-    textbgcolor,
-    borderRadiusColor,
-    fontFamily,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginHorizontal,
-    marginVertical,
     buttonStyle,
-    btnBgColor,
     onlyResendOtp,
     onResentClick,
+    buttonTitleStyle,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
@@ -54,6 +44,7 @@ const RnOtpInput = (props) => {
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const [minute, setMinute] = useState(Minute);
   const [second, setSecond] = useState(Second);
+  const [isResend, setIsResend] = useState(false);
   const ChangeHandler = (e, index) => {
     const { text } = e.nativeEvent;
     const newOtp = [...otp];
@@ -64,17 +55,17 @@ const RnOtpInput = (props) => {
       : activeOtpIndex !== 0
       ? setActiveOtpIndex(index - 1)
       : null;
+
     /**
      * ? For AutoSubmit (After Fill All Input we Can call a Fun)
      */
+
     activeOtpIndex === props.pinCount - 1
       ? onChageValue(newOtp.join("").toString())
       : null;
     autoSubmit
       ? activeOtpIndex === props.pinCount - 1
-        ? onSubmit()
-          ? onSubmit(newOtp.join("").toString())
-          : null
+        ? onSubmit(newOtp.join("").toString())
         : null
       : null;
   };
@@ -112,24 +103,27 @@ const RnOtpInput = (props) => {
    */
 
   useEffect(() => {
+    isResend ? (setSecond(Second), setMinute(Minute)) : null;
     const interval = setInterval(() => {
       if (second > 0) {
         setSecond(second - 1);
+        setIsResend(false);
       }
       if (second === 0) {
         if (minute === 0) {
           clearInterval(interval);
+          setIsResend(false);
         } else {
           setSecond(59);
           setMinute(minute - 1);
+          setIsResend(false);
         }
       }
     }, 1000);
-
     return () => {
       clearInterval(interval);
     };
-  }, [second]);
+  }, [second, isResend]);
   return (
     <>
       <View style={styles.container}>
@@ -139,17 +133,29 @@ const RnOtpInput = (props) => {
               <View
                 key={index}
                 style={{
+                  borderBottomWidth:
+                    mode === "flat"
+                      ? 1
+                      : activeOtpIndex === index
+                      ? borderWidth
+                      : 0,
                   borderWidth: scale(
-                    activeOtpIndex === index ? borderWidth : 0,
+                    mode === "flat"
+                      ? 0
+                      : activeOtpIndex === index
+                      ? borderWidth
+                      : 0,
                   ),
                   borderRadius: scale(
                     mode === "circle"
                       ? 50
+                      : mode === "flat"
+                      ? 0
                       : mode === "rectangle"
                       ? borderRadius
                       : borderRadius,
                   ),
-                  backgroundColor: bgcolor,
+                  backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                   marginHorizontal:
                     Platform.isPad || guidelineBaseWidth > 500
                       ? scale(40)
@@ -200,11 +206,13 @@ const RnOtpInput = (props) => {
                     borderRadius: scale(
                       mode === "circle"
                         ? 50
+                        : mode === "flat"
+                        ? 0
                         : mode === "rectangle"
                         ? borderRadius
                         : borderRadius,
                     ),
-                    backgroundColor: bgcolor,
+                    backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                     paddingBottom: 0,
                     paddingTop: 0,
                   }}
@@ -221,7 +229,9 @@ const RnOtpInput = (props) => {
           }}
         >
           <TouchableOpacity
-            onPress={onResentClick}
+            onPress={() => {
+              setIsResend(true), onResentClick();
+            }}
             disabled={
               onlyResendOtp
                 ? false
@@ -239,8 +249,6 @@ const RnOtpInput = (props) => {
               alignItems: "center",
             }}
           >
-            {/* <Text style={styles.formTitle}>{`Resend OPT in ${minute < 10 ? minute : minute}:${second < 10 ? second : second} sec`} */}
-            {/* </Text> */}
             <Text style={styles.formTitle}>
               Resend OPT
               {minute === 0 && second === 0 ? null : onlyResendOtp ? null : (
@@ -264,45 +272,13 @@ const RnOtpInput = (props) => {
         >
           <TouchableOpacity
             onPress={onSubmit}
-            disabled={
-              onlyResendOtp
-                ? false
-                : activeOtpIndex === props.pinCount
-                ? false
-                : true
-            }
-            style={
-              Object?.keys(buttonStyle)?.length === 0
-                ? {
-                    flex: 1,
-                    backgroundColor: btnBgColor,
-                    height: height,
-                    fontFamily: fontFamily,
-                    fontSize: fontsize,
-                    borderColor: borderRadiusColor,
-                    borderRadius: borderRadius,
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginTop: marginTop,
-                    marginBottom: marginBottom,
-                    marginLeft: marginLeft,
-                    marginHorizontal: marginHorizontal,
-                    marginVertical: marginVertical,
-                    opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
-                  }
-                : buttonStyle
-            }
+            disabled={activeOtpIndex === props.pinCount ? false : true}
+            style={{
+              ...buttonStyle,
+              opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+            }}
           >
-            <Text
-              style={{
-                fontFamily: "SourceSansPro-SemiBold",
-                fontSize: scale(15),
-                color: "#FFFFFF",
-              }}
-            >
-              {buttonTitle}
-            </Text>
+            <Text style={buttonTitleStyle}>{buttonTitle}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -316,7 +292,6 @@ RnOtpInput.propTypes = {
   secureTextEntry: PropTypes.bool,
   autoSubmit: PropTypes.bool,
   mode: PropTypes.string,
-  borderRadius: PropTypes.number,
   onChageValue: PropTypes.func,
   bgcolor: PropTypes.string,
   textColor: PropTypes.string,
@@ -327,21 +302,10 @@ RnOtpInput.propTypes = {
   Minute: PropTypes.number,
   Second: PropTypes.number,
   borderRadius: PropTypes.number,
-  height: PropTypes.number,
-  fontsize: PropTypes.number,
-  onChageValue: PropTypes.func,
-  textbgcolor: PropTypes.string,
-  borderRadiusColor: PropTypes.string,
-  fontFamily: PropTypes.string,
-  marginTop: PropTypes.number,
-  marginBottom: PropTypes.number,
-  marginLeft: PropTypes.number,
-  marginHorizontal: PropTypes.number,
-  marginVertical: PropTypes.number,
   buttonStyle: PropTypes.object,
-  btnBgColor: PropTypes.string,
   onlyResendOtp: PropTypes.bool,
   onResentClick: PropTypes.func,
+  buttonTitleStyle: PropTypes.object,
 };
 
 RnOtpInput.defaultProps = {
@@ -352,7 +316,6 @@ RnOtpInput.defaultProps = {
   secureTextEntry: false,
   autoSubmit: false,
   mode: "rectangle",
-  borderRadius: 6,
   bgcolor: "#D9E3F6",
   textColor: "#000000",
   borderWidth: 1,
@@ -362,21 +325,33 @@ RnOtpInput.defaultProps = {
   Minute: 1,
   Second: 0,
   onChageValue: () => {},
-  borderRadius: 6,
-  fontsize: scale(8),
-  height: scale(40),
-  textbgcolor: "#349beb",
-  borderRadiusColor: "",
-  fontFamily: "SourceSansPro-Regular",
-  marginTop: scale(10),
-  marginBottom: scale(0),
-  marginLeft: scale(0),
-  marginHorizontal: scale(0),
-  marginVertical: scale(0),
-  buttonStyle: {},
-  btnBgColor: "#349beb",
+  onSubmit: (e) => {
+    console.log("Enter Value :-", e);
+  },
+  buttonStyle: {
+    flex: 1,
+    backgroundColor: "#349beb",
+    height: scale(40),
+    fontFamily: "SourceSansPro-Regular",
+    fontSize: scale(8),
+    borderColor: "",
+    borderRadius: scale(6),
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: scale(10),
+    marginBottom: scale(0),
+    marginLeft: scale(0),
+    marginHorizontal: scale(0),
+    marginVertical: scale(0),
+  },
   onlyResendOtp: false,
   onResentClick: () => {},
+  buttonTitleStyle: {
+    fontFamily: "SourceSansPro-SemiBold",
+    fontSize: scale(15),
+    color: "#FFFFFF",
+  },
 };
 export default RnOtpInput;
 
