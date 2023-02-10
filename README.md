@@ -19,13 +19,13 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 
 ## Basic Usage
 
-[Android Screen Short]
+Android Screen Short
 
 <kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087798-ee2b4c26-c603-435b-a90b-8e31279d4cea.png" /> </kbd>
 <kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087104-e162b482-1fc4-44ec-bdc5-96ea9abbf853.png" /> </kbd>
 <kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218086772-28f749d3-8329-494e-8b0c-806310db573a.png" /> </kbd>
 
-[Ios Screen Short]
+Ios Screen Short
 
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218086943-462a99fb-39b1-4ac6-a5e6-1394dbd6c921.png" /> </kbd>
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218088503-acfdafbc-35a7-4a83-8072-96dafa224b09.png" /> </kbd>
