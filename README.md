@@ -98,3 +98,11 @@ const  [value,  setValue]  =  useState('');
 ## Contributors
 
 `Jayanta Garu`
+
+## Keywords
+
+- [react@^17.0.2](https://www.npmjs.com/search?q=keywords:react-native)
+- [react-native@^0.68.2](https://www.npmjs.com/search?q=keywords:react-native)
+- [prop-types@^15.8.1](https://www.npmjs.com/package/prop-types)
+- [one time password](https://www.npmjs.com/search?q=keywords:one%20time%20password)
+- [verifcation code](https://www.npmjs.com/search?q=keywords:verifcation%20code)

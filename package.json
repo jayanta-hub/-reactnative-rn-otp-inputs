@@ -16,7 +16,8 @@
     "react-native@^0.68.2",
     "prop-types@^15.8.1",
     "one time password",
-    "verifcation code"
+    "verifcation code",
+    "rn-otp-inputs"
   ],
   "repository": {
     "type": "git",
