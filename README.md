@@ -22,7 +22,7 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 Android Screen Short
 
 <kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087798-ee2b4c26-c603-435b-a90b-8e31279d4cea.png" /> </kbd>
-<kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087104-e162b482-1fc4-44ec-bdc5-96ea9abbf853.png" /> </kbd>
+<kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218094751-3a12145a-19cc-4a82-8368-f80036d14995.png" /> </kbd>
 <kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218086772-28f749d3-8329-494e-8b0c-806310db573a.png" /> </kbd>
 
 Ios Screen Short

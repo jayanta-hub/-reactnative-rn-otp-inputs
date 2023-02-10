@@ -12,7 +12,7 @@ import React, { useRef, useState, useEffect } from "react";
 import {
   guidelineBaseWidth,
   scale,
-} from "../../../Infrastructure/utils/screenUtility";
+} from "./src/Infrastructure/utils/screenUtility";
 import PropTypes from "prop-types";
 const RnOtpInputs = (props) => {
   const {
