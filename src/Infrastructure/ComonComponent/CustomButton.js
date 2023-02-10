@@ -1,9 +1,9 @@
-import {View, Text, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {scale} from '../utils/screenUtility';
-import PropTypes from 'prop-types';
+import { View, Text, TouchableOpacity } from "react-native";
+import React from "react";
+import { scale } from "../utils/screenUtility";
+import PropTypes from "prop-types";
 
-const CustomButton = props => {
+const CustomButton = (props) => {
   const {
     borderRadius,
     height,
@@ -17,20 +17,26 @@ const CustomButton = props => {
     marginHorizontal,
     marginVertical,
     buttonStyle,
-    onSubmit
+    onSubmit,
+    btnBgColor,
   } = props;
+  console.log("🚀 ~ file: CustomButton.js:22 ~ CustomButton ~ props", props);
+  useEffect(() => {
+    console.log("🚀 ~ file: CustomButton.js:22 ~ CustomButton ~ props", props);
+  }, []);
 
   return (
     <View
       style={{
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'center',
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
         marginTop: scale(10),
         marginHorizontal: scale(30),
-      }}>
+      }}
+    >
       <TouchableOpacity
-        onPress={onSubmit}
+        onPress={onSubmit()}
         style={
           Object.keys(buttonStyle).length === 0
             ? {
@@ -41,9 +47,9 @@ const CustomButton = props => {
                 fontSize: fontsize,
                 borderColor: borderRadiusColor,
                 borderRadius: borderRadius,
-                alignItems: 'center',
-                flexDirection: 'row',
-                justifyContent: 'center',
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "center",
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 marginLeft: marginLeft,
@@ -51,13 +57,15 @@ const CustomButton = props => {
                 marginVertical: marginVertical,
               }
             : buttonStyle
-        }>
+        }
+      >
         <Text
           style={{
-            fontFamily: 'SourceSansPro-SemiBold',
+            fontFamily: "SourceSansPro-SemiBold",
             fontSize: scale(15),
-            color: '#FFFFFF',
-          }}>
+            color: "#FFFFFF",
+          }}
+        >
           {props.title}
         </Text>
       </TouchableOpacity>
@@ -88,9 +96,9 @@ CustomButton.defaultProps = {
   borderRadius: 6,
   fontsize: scale(8),
   height: scale(40),
-  textbgcolor: '#349beb',
-  borderRadiusColor: '',
-  fontFamily: 'SourceSansPro-Regular',
+  textbgcolor: "#349beb",
+  borderRadiusColor: "",
+  fontFamily: "SourceSansPro-Regular",
   marginTop: scale(10),
   marginBottom: scale(0),
   marginLeft: scale(0),
