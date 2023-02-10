@@ -19,21 +19,17 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 
 ## Basic Usage
 
-[Android Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Android)
+[Android Screen Short]
 
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1675947562.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1675947571.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019971.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019975.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676019999.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="200" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Android/Screenshot_1676020002.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087798-ee2b4c26-c603-435b-a90b-8e31279d4cea.png" /> </kbd>
+<kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218087104-e162b482-1fc4-44ec-bdc5-96ea9abbf853.png" /> </kbd>
+<kbd> <img height="500" width="200" src="https://user-images.githubusercontent.com/76052991/218086772-28f749d3-8329-494e-8b0c-806310db573a.png" /> </kbd>
 
-[Ios Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Ios)
+[Ios Screen Short]
 
-<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-09%20at%2022.07.07.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218086943-462a99fb-39b1-4ac6-a5e6-1394dbd6c921.png" /> </kbd>
 <kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.29.55.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.35.45.png?raw=true" /> </kbd>
-<kbd> <img height="500" width="230" src="https://github.com/jayanta-hub/rn-otp-inputs/blob/main/src/example/Ios/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202023-02-10%20at%2014.36.29.png?raw=true" /> </kbd>
+<kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218087265-f5e9955a-53fa-40f9-b32a-eb55823e894b.png" /> </kbd>
 
 ```
 import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
