@@ -20,22 +20,22 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 ## Basic Usage
 
 ```
-import  RnOtpInput  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInput';
+import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
 
 ...
 
-<RnOtpInput  pinCount={4}  />
+<RnOtpInputs  pinCount={4}  />
 ```
 
 ## More Advanced Usage
 
 ```
-import  RnOtpInput  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInput';
+import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';
 
 ...
 const  [value,  setValue]  =  useState('');
 ...
-<RnOtpInput
+<RnOtpInputs
   pinCount={4}
   mode='rectangle'
   onSubmit={()=>{}}
@@ -58,28 +58,29 @@ const  [value,  setValue]  =  useState('');
 
 ## Parameters
 
-| Parameter        | Required | Type       | Description                                                       |
-| ---------------- | -------- | ---------- | ----------------------------------------------------------------- |
-| pinCount         | `YES`    | `Number`   | Number of digits in the component, Default Number of digits is 4. |
-| mode             | `No`     | `String`   | mode can be rectangle, flat or circle, Default mode is rectangle. |
-| onSubmit         | `Yes`    | `Function` | Callback when Submit Button is Click.Default value is false       |
-| secureTextEntry  | `No`     | `Boolean`  | Hide contents of text fields                                      |
-| autoSubmit       | `No`     | `Boolean`  | Callback when the digits are filled. Default value is false.      |
-| borderRadius     | `No`     | `Number`   | Change borderRadius of input field.                               |
-| borderWidth      | `No`     | `Number`   | Change borderWidth of input field.                                |
-| borderColor      | `No`     | `String`   | Change borderColor of input field.                                |
-| borderWidth      | `No`     | `Number`   | Change borderWidth of input field.                                |
-| bgColor          | `No`     | `String`   | Change background Color of input field.                           |
-| textColor        | `No`     | `String`   | The style of the input Text.                                      |
-| onChageValue     | `No`     | `Function` | Callback when the digits are changed.                             |
-| keyboardType     | `No`     | `String`   | Keyboard type. Default value is 'number-pad'.                     |
-| buttonTitle      | `No`     | `String`   | ButtonTitle.Default value is 'Verify & Proceed'.                  |
-| Minute           | `No`     | `Number`   | Remaining Time in minute.Default value is 1.                      |
-| Second           | `No`     | `Number`   | Remaining Time in Second.Default value is 0.                      |
-| onlyResendOtp    | `No`     | `Boolon`   | For Only Resend Otp UI View .Default value is false.              |
-| onResentClick    | `No`     | `Function` | Callback when the resend button clicked.Default value is false.   |
-| buttonStyle      | `No`     | `object`   | The style of the button.                                          |
-| buttonTitleStyle | `No`     | `object`   | The style of the button Title.                                    |
+| Parameter         | Required | Type       | Description                                                       |
+| ----------------- | -------- | ---------- | ----------------------------------------------------------------- |
+| pinCount          | `YES`    | `Number`   | Number of digits in the component, Default Number of digits is 4. |
+| mode              | `No`     | `String`   | mode can be rectangle, flat or circle, Default mode is rectangle. |
+| onSubmit          | `Yes`    | `Function` | Callback when Submit Button is Click.                             |
+| secureTextEntry   | `No`     | `Boolean`  | Hide contents of text fields                                      |
+| autoSubmit        | `No`     | `Boolean`  | Callback when the digits are filled.Default value is false.       |
+| borderRadiusStyle | `No`     | `Number`   | Change borderRadius of input field.                               |
+| borderWidth       | `No`     | `Number`   | Change borderWidth of input field.                                |
+| borderColor       | `No`     | `String`   | Change borderColor of input field.                                |
+| borderWidth       | `No`     | `Number`   | Change borderWidth of input field.                                |
+| bgColor           | `No`     | `String`   | Change background Color of input field.                           |
+| textColor         | `No`     | `String`   | The style of the input Text.                                      |
+| onChageValue      | `No`     | `Function` | Callback when the digits are filled.                              |
+| keyboardType      | `No`     | `String`   | Keyboard type. Default value is 'number-pad'.                     |
+| buttonTitle       | `No`     | `String`   | ButtonTitle.Default value is 'Verify & Proceed'.                  |
+| Minute            | `No`     | `Number`   | Remaining Time in minute.Default value is 1.                      |
+| Second            | `No`     | `Number`   | Remaining Time in Second.Default value is 0.                      |
+| onlyResendOtp     | `No`     | `Boolon`   | For Only Resend Otp UI View .Default value is false.              |
+| onResentClick     | `No`     | `Function` | Callback when the resend button clicked.                          |
+| buttonStyle       | `No`     | `object`   | The style of the button.                                          |
+| buttonTitleStyle  | `No`     | `object`   | The style of the button Title.                                    |
+| resendTextStyle   | `No`     | `object`   | The style of the Resend Text.                                     |
 
 ## Contributors
 

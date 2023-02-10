@@ -12,7 +12,7 @@ import {
   scale,
 } from "../../../Infrastructure/utils/screenUtility";
 import PropTypes from "prop-types";
-const RnOtpInput = (props) => {
+const RnOtpInputs = (props) => {
   const {
     onSubmit,
     secureTextEntry,
@@ -32,6 +32,7 @@ const RnOtpInput = (props) => {
     onlyResendOtp,
     onResentClick,
     buttonTitleStyle,
+    resendTextStyle,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
@@ -60,9 +61,7 @@ const RnOtpInput = (props) => {
      * ? For AutoSubmit (After Fill All Input we Can call a Fun)
      */
 
-    activeOtpIndex === props.pinCount - 1
-      ? onChageValue(newOtp.join("").toString())
-      : null;
+    onChageValue(newOtp.join("").toString());
     autoSubmit
       ? activeOtpIndex === props.pinCount - 1
         ? onSubmit(newOtp.join("").toString())
@@ -249,10 +248,10 @@ const RnOtpInput = (props) => {
               alignItems: "center",
             }}
           >
-            <Text style={styles.formTitle}>
+            <Text style={resendTextStyle}>
               Resend OPT
               {minute === 0 && second === 0 ? null : onlyResendOtp ? null : (
-                <Text style={styles.formTitle}>
+                <Text style={resendTextStyle}>
                   {" "}
                   in{" "}
                   {minute !== 0 ? `${minute}:${second} sec` : ` ${second} sec`}
@@ -286,7 +285,7 @@ const RnOtpInput = (props) => {
   );
 };
 
-RnOtpInput.propTypes = {
+RnOtpInputs.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   pinCount: PropTypes.number.isRequired,
   secureTextEntry: PropTypes.bool,
@@ -306,9 +305,10 @@ RnOtpInput.propTypes = {
   onlyResendOtp: PropTypes.bool,
   onResentClick: PropTypes.func,
   buttonTitleStyle: PropTypes.object,
+  resendTextStyle: PropTypes.object,
 };
 
-RnOtpInput.defaultProps = {
+RnOtpInputs.defaultProps = {
   /**
    * ? not required, this prop mentioned as required in propTypes
    */
@@ -332,7 +332,6 @@ RnOtpInput.defaultProps = {
     flex: 1,
     backgroundColor: "#349beb",
     height: scale(40),
-    fontFamily: "SourceSansPro-Regular",
     fontSize: scale(8),
     borderColor: "",
     borderRadius: scale(6),
@@ -348,12 +347,15 @@ RnOtpInput.defaultProps = {
   onlyResendOtp: false,
   onResentClick: () => {},
   buttonTitleStyle: {
-    fontFamily: "SourceSansPro-SemiBold",
     fontSize: scale(15),
     color: "#FFFFFF",
   },
+  resendTextStyle: {
+    fontSize: scale(15),
+    color: "#404B69",
+  },
 };
-export default RnOtpInput;
+export default RnOtpInputs;
 
 const styles = StyleSheet.create({
   container: {
@@ -365,10 +367,5 @@ const styles = StyleSheet.create({
     marginTop: scale(10),
     marginHorizontal: scale(30),
     flexWrap: "wrap",
-  },
-  formTitle: {
-    fontFamily: "SourceSansPro-SemiBold",
-    fontSize: scale(15),
-    color: "#404B69",
   },
 });
