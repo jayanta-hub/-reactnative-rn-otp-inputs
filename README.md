@@ -1,4 +1,4 @@
-# React Native OTP Inputs
+# rn-otp-inputs
 
 <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/rn-otp-inputs">
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/jayanta-hub?style=social">
