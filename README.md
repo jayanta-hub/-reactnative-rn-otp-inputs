@@ -19,7 +19,9 @@ We use react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 .So you should 
 
 ## Basic Usage
 
-[Android Screen Short](https://www.npmjs.com/search?q=keywords:react-native)
+[Android Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Android)
+
+[Ios Screen Short](https://github.com/jayanta-hub/rn-otp-inputs/tree/main/src/example/Ios)
 
 ```
 import  RnOtpInputs  from  'rn-otp-inputs/src/Prasentation/Component/ReactOtpInput/RnOtpInputs';

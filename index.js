@@ -12,7 +12,7 @@ import {
   scale,
 } from "../../../Infrastructure/utils/screenUtility";
 import PropTypes from "prop-types";
-const RnOtpInput = (props) => {
+const RnOtpInputs = (props) => {
   const {
     onSubmit,
     secureTextEntry,
@@ -285,7 +285,7 @@ const RnOtpInput = (props) => {
   );
 };
 
-RnOtpInput.propTypes = {
+RnOtpInputs.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   pinCount: PropTypes.number.isRequired,
   secureTextEntry: PropTypes.bool,
@@ -308,7 +308,7 @@ RnOtpInput.propTypes = {
   resendTextStyle: PropTypes.object,
 };
 
-RnOtpInput.defaultProps = {
+RnOtpInputs.defaultProps = {
   /**
    * ? not required, this prop mentioned as required in propTypes
    */
@@ -355,7 +355,7 @@ RnOtpInput.defaultProps = {
     color: "#404B69",
   },
 };
-export default RnOtpInput;
+export default RnOtpInputs;
 
 const styles = StyleSheet.create({
   container: {
