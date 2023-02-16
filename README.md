@@ -82,7 +82,7 @@ const  [value,  setValue]  =  useState('');
 | borderWidth         | `No`     | `Number`   | Change Border Width of input field.                                                                                                                                       |
 | bgColor             | `No`     | `String`   | Change Background Color of input field.                                                                                                                                   |
 | textColor           | `No`     | `String`   | The style of the input Text.                                                                                                                                              |
-| onChageValue        | `No`     | `Function` | Callback when the digits are filled.                                                                                                                                      |
+| onChageValue        | `No`     | `Function` | Callback when the digits are Changed.                                                                                                                                     |
 | keyboardType        | `No`     | `String`   | Keyboard type. Default value is 'number-pad'.                                                                                                                             |
 | buttonTitle         | `No`     | `String`   | Button Title . Default value is 'Verify & Proceed'.                                                                                                                       |
 | Minute              | `No`     | `Number`   | Remaining Time in minute .Default value is 1.                                                                                                                             |
@@ -95,5 +95,7 @@ const  [value,  setValue]  =  useState('');
 | inputHeightAndWidth | `No`     | `Number`   | Height and width of input feild.                                                                                                                                          |
 
 ## Contributors
+
+![jayanta7381](https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci81ZWZhZGY0MjdjNzliM2YxZDY0ODcxNzI0NjI2NWQzNz9zaXplPTEwMCZkZWZhdWx0PXJldHJvIn0.Ujb96nLBkk2Z0K5NilEVjWj-0Kpa6NTFeIV8c5Ip-mQ)
 
 `Jayanta Garu`
