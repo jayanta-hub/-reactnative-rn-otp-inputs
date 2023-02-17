@@ -21,7 +21,7 @@ const RnOtpInputs = (props) => {
     secureTextEntry,
     autoSubmit,
     mode,
-    borderRadiusStyle,
+    borderRadius,
     onChageValue,
     bgcolor,
     textColor,
@@ -215,8 +215,8 @@ const RnOtpInputs = (props) => {
                           : mode === "flat"
                           ? 0
                           : mode === "rectangle"
-                          ? borderRadiusStyle
-                          : borderRadiusStyle,
+                          ? borderRadius
+                          : borderRadius,
                       ),
                       backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                       marginHorizontal:
@@ -285,8 +285,8 @@ const RnOtpInputs = (props) => {
                             : mode === "flat"
                             ? 0
                             : mode === "rectangle"
-                            ? borderRadiusStyle
-                            : borderRadiusStyle,
+                            ? borderRadius
+                            : borderRadius,
                         ),
                         backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                         paddingBottom: 0,
@@ -386,7 +386,7 @@ RnOtpInputs.propTypes = {
   buttonTitle: PropTypes.string,
   Minute: PropTypes.number,
   Second: PropTypes.number,
-  borderRadiusStyle: PropTypes.number,
+  borderRadius: PropTypes.number,
   buttonStyle: PropTypes.object,
   onlyResendOtp: PropTypes.bool,
   onResendClick: PropTypes.func,
@@ -410,7 +410,7 @@ RnOtpInputs.defaultProps = {
   bgcolor: "#D9E3F6",
   textColor: "#000000",
   borderWidth: 1,
-  borderRadiusStyle: 6,
+  borderRadius: 6,
   borderColor: "#A768F1",
   keyboardType: "number-pad",
   buttonTitle: "Verify & Proceed",
