@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Animated,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   guidelineBaseWidth,
   scale,
-} from "./src/Infrastructure/utils/screenUtility";
-import PropTypes from "prop-types";
+} from "../Infrastructure/utils/screenUtility";
 const RnOtpInputs = (props) => {
   const {
     onSubmit,
@@ -32,10 +33,15 @@ const RnOtpInputs = (props) => {
     Second,
     buttonStyle,
     onlyResendOtp,
-    onResentClick,
+    onResendClick,
     buttonTitleStyle,
     resendTextStyle,
     inputHeightAndWidth,
+    isError,
+    errorMsgStyle,
+    errorMsg,
+    isButtonDisplay,
+    isResendOtpDisplay,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
@@ -49,6 +55,45 @@ const RnOtpInputs = (props) => {
   const [minute, setMinute] = useState(Minute);
   const [second, setSecond] = useState(Second);
   const [isResend, setIsResend] = useState(false);
+  const [iserror, setIserror] = useState("");
+  const [shakeAnimation, setShakeAnimation] = useState(new Animated.Value(0));
+  const startShake = () => {
+    Animated.sequence([
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 90,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 90,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 90,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 0,
+        duration: 90,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+  const ResendHandler = () => {
+    setOtp(
+      new Array(
+        props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
+          ? props.pinCount
+          : 4,
+      ).fill(""),
+    ),
+      setIserror(false),
+      setActiveOtpIndex(0),
+      setIsResend(true),
+      onResendClick();
+  };
   const ChangeHandler = (e, index) => {
     const { text } = e.nativeEvent;
     const newOtp = [...otp];
@@ -56,14 +101,12 @@ const RnOtpInputs = (props) => {
     setOtp(newOtp);
     e.nativeEvent?.text
       ? setActiveOtpIndex(index + 1)
-      : activeOtpIndex !== 0
+      : index > 0
       ? setActiveOtpIndex(index - 1)
       : null;
-
     /**
      * ? For AutoSubmit (After Fill All Input we Can call a Fun)
      */
-
     onChageValue(newOtp.join("").toString());
     autoSubmit
       ? activeOtpIndex === props.pinCount - 1
@@ -75,13 +118,23 @@ const RnOtpInputs = (props) => {
     /**
      * ? When Enter BackSpace
      */
-    e.nativeEvent.key === "Backspace" ? setActiveOtpIndex(index - 1) : null;
+    e.nativeEvent.key === "Backspace" && index > 0
+      ? (setActiveOtpIndex(index - 1), setIserror(false))
+      : null;
   };
+
+  /**
+   * ? For Error hanlder
+   */
+
+  useEffect(() => {
+    setIserror(isError);
+    isError ? startShake() : null;
+  }, [isError]);
 
   /**
    * ? For Dynamic Array
    */
-
   useEffect(() => {
     setOtp(
       new Array(
@@ -137,17 +190,20 @@ const RnOtpInputs = (props) => {
             <View style={styles.containerWrap}>
               {otp.map((item, index) => {
                 return (
-                  <View
+                  <Animated.View
                     key={index}
                     style={{
-                      borderBottomWidth:
-                        mode === "flat"
-                          ? 1
-                          : activeOtpIndex === index
-                          ? borderWidth
-                          : 0,
+                      borderBottomWidth: iserror
+                        ? borderWidth
+                        : mode === "flat"
+                        ? 1
+                        : activeOtpIndex === index
+                        ? borderWidth
+                        : 0,
                       borderWidth: scale(
-                        mode === "flat"
+                        iserror
+                          ? borderWidth
+                          : mode === "flat"
                           ? 0
                           : activeOtpIndex === index
                           ? borderWidth
@@ -173,7 +229,8 @@ const RnOtpInputs = (props) => {
                           : scale(0),
 
                       padding: scale(0.5),
-                      borderColor: borderColor,
+                      borderColor: iserror ? "red" : borderColor,
+                      transform: [{ translateX: shakeAnimation }],
                     }}
                   >
                     <TextInput
@@ -236,74 +293,77 @@ const RnOtpInputs = (props) => {
                         paddingTop: 0,
                       }}
                     />
-                  </View>
+                  </Animated.View>
                 );
               })}
             </View>
-            <View
-              style={{
-                ...styles.containerWrap,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => {
-                  setIsResend(true), onResentClick();
-                }}
-                disabled={
-                  onlyResendOtp
-                    ? false
-                    : minute === 0 && second === 0
-                    ? false
-                    : true
-                }
+            {iserror ? <Text style={errorMsgStyle}>{errorMsg}</Text> : null}
+            {isResendOtpDisplay ? (
+              <View
                 style={{
-                  opacity: onlyResendOtp
-                    ? 1
-                    : minute === 0 && second === 0
-                    ? 1
-                    : 0.5,
+                  ...styles.containerWrap,
                   justifyContent: "center",
                   alignItems: "center",
-                  marginVertical: scale(20),
                 }}
               >
-                <Text style={resendTextStyle}>
-                  Resend OPT
-                  {minute === 0 &&
-                  second === 0 ? null : onlyResendOtp ? null : (
-                    <Text style={resendTextStyle}>
-                      {" "}
-                      in{" "}
-                      {minute !== 0
-                        ? `${minute}:${second} sec`
-                        : ` ${second} sec`}
-                    </Text>
-                  )}
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "center",
-                marginTop: scale(10),
-                marginHorizontal: scale(30),
-              }}
-            >
-              <TouchableOpacity
-                onPress={onSubmit}
-                disabled={activeOtpIndex === props.pinCount ? false : true}
+                <TouchableOpacity
+                  onPress={ResendHandler}
+                  disabled={
+                    onlyResendOtp
+                      ? false
+                      : minute === 0 && second === 0
+                      ? false
+                      : true
+                  }
+                  style={{
+                    opacity: onlyResendOtp
+                      ? 1
+                      : minute === 0 && second === 0
+                      ? 1
+                      : 0.5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginVertical: scale(20),
+                  }}
+                >
+                  <Text style={resendTextStyle}>
+                    Resend OPT
+                    {minute === 0 &&
+                    second === 0 ? null : onlyResendOtp ? null : (
+                      <Text style={resendTextStyle}>
+                        {" "}
+                        in{" "}
+                        {minute !== 0
+                          ? `${minute}:${second} sec`
+                          : ` ${second} sec`}
+                      </Text>
+                    )}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
+            {isButtonDisplay ? (
+              <View
                 style={{
-                  ...buttonStyle,
-                  opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  marginTop: scale(10),
+                  marginHorizontal: scale(30),
                 }}
               >
-                <Text style={buttonTitleStyle}>{buttonTitle}</Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity
+                  onPress={onSubmit}
+                  disabled={activeOtpIndex === props.pinCount ? false : true}
+                  style={{
+                    ...buttonStyle,
+                    opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+                  }}
+                >
+                  <Text style={buttonTitleStyle}>{buttonTitle}</Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -329,9 +389,14 @@ RnOtpInputs.propTypes = {
   borderRadiusStyle: PropTypes.number,
   buttonStyle: PropTypes.object,
   onlyResendOtp: PropTypes.bool,
-  onResentClick: PropTypes.func,
+  onResendClick: PropTypes.func,
   buttonTitleStyle: PropTypes.object,
   resendTextStyle: PropTypes.object,
+  isError: PropTypes.bool,
+  errorMsgStyle: PropTypes.object,
+  errorMsg: PropTypes.string,
+  isButtonDisplay: PropTypes.bool,
+  isResendOtpDisplay: PropTypes.bool,
 };
 
 RnOtpInputs.defaultProps = {
@@ -370,7 +435,7 @@ RnOtpInputs.defaultProps = {
     marginVertical: scale(0),
   },
   onlyResendOtp: false,
-  onResentClick: () => {},
+  onResendClick: () => {},
   buttonTitleStyle: {
     fontSize: scale(15),
     color: "#FFFFFF",
@@ -379,6 +444,16 @@ RnOtpInputs.defaultProps = {
     fontSize: scale(15),
     color: "#404B69",
   },
+  isError: false,
+  errorMsgStyle: {
+    marginLeft: scale(30),
+    marginTop: scale(5),
+    fontSize: scale(12),
+    color: "red",
+  },
+  errorMsg: "Invalid OTP.",
+  isButtonDisplay: true,
+  isResendOtpDisplay: true,
 };
 export default RnOtpInputs;
 
