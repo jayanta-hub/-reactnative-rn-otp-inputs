@@ -1,6 +1,6 @@
 {
   "name": "rn-otp-inputs",
-  "version": "1.0.2",
+  "version": "1.0.11",
   "description": "rn-otp-inputs",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,14 @@
     "react": "17.0.2",
     "react-native": "0.68.2"
   },
+  "keywords": [
+    "react",
+    "react-native",
+    "prop-types",
+    "one time password",
+    "verifcation code",
+    "rn-otp-inputs"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jayanta-hub/rn-otp-inputs.git"
