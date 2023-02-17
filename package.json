@@ -1,6 +1,6 @@
 {
   "name": "rn-otp-inputs",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "rn-otp-inputs",
   "main": "index.js",
   "scripts": {
