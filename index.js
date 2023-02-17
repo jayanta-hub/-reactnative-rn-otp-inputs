@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 import {
   guidelineBaseWidth,
   scale,
-} from "../Infrastructure/utils/screenUtility";
+} from "./src/Infrastructure/utils/screenUtility";
 const RnOtpInputs = (props) => {
   const {
     onSubmit,
