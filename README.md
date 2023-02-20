@@ -1,29 +1,16 @@
 # rn-otp-inputs
 
-<img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/rn-otp-inputs">
-<img alt="GitHub followers" src="https://img.shields.io/github/followers/jayanta-hub?style=social">
+<img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/prop-types">
+
+<img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/react-native">
+
+<img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/react">
+
+<img alt="npm" src="https://img.shields.io/npm/dm/rn-otp-inputs">
+
+<img alt="NPM" src="https://img.shields.io/npm/l/rn-otp-inputs">
 
 **rn-otp-inputs** is a tiny Javascript library which provides an elegant UI for the end user to input one time passcode (OTP). It handles autocomplete functionality and it display remaining time for OTP. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI, but you can always customize the appearance as you like.
-
-## Installation
-
-`npm install --save rn-otp-inputs`
-
-or
-
-`yarn add rn-otp-inputs`
-
-## PeerDependencies
-
-### NOTES:
-
-This packgae will support react@^ 17.0.2, prop-types@^ 15.8.1, react-native@^0.68.2 and upper version.
-
-`npm install --save prop-types@15.8.1 react@17.0.2 react-native@0.68.2`
-
-or
-
-`yarn add prop-types@15.8.1 react@17.0.2 react-native@0.68.2`
 
 ## ScreenShot
 
@@ -40,6 +27,34 @@ Ios
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/219652235-17e17755-6486-4f35-8611-22ceb32730c9.png" /> </kbd>
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218087265-f5e9955a-53fa-40f9-b32a-eb55823e894b.png" /> </kbd>
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/219652407-3465cbf9-1762-4025-88e4-e9418e02fc72.png" /> </kbd>
+
+## Installation
+
+`npm install --save rn-otp-inputs`
+
+or
+
+`yarn add rn-otp-inputs`
+
+## PeerDependencies
+
+### NOTES:
+
+This packgae will support react@ 17.0.2, prop-types@ 15.8.1, react-native@ 0.68.2. Make sure you have install respective viersion.
+
+`npm install --save prop-types@15.8.1 react@17.0.2 react-native@0.68.2`
+
+or
+
+`yarn add prop-types@15.8.1 react@17.0.2 react-native@0.68.2`
+
+If you have install other than respective version , please use `--legacy-peer-deps` while install `rn-otp-inputs` .
+
+`npm install --save rn-otp-inputs --legacy-peer-deps`
+
+or
+
+`yarn add rn-otp-inputs --legacy-peer-deps`
 
 ## Basic Usage
 
