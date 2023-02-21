@@ -8,7 +8,7 @@
 
 Ios
 
-<kbd><video loop autoplay muted controls height="500" width="230" src="https://user-images.githubusercontent.com/76052991/220114667-3e430e96-bf9d-49d7-b4e3-18fb06e75216.mov" ></video></kbd> <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218086943-462a99fb-39b1-4ac6-a5e6-1394dbd6c921.png" /> </kbd>
+<kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/219652235-17e17755-6486-4f35-8611-22ceb32730c9.png" /> </kbd> <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218086943-462a99fb-39b1-4ac6-a5e6-1394dbd6c921.png" /> </kbd>
 <kbd> <img height="500" width="230" src="https://user-images.githubusercontent.com/76052991/218087265-f5e9955a-53fa-40f9-b32a-eb55823e894b.png" /> </kbd>
 
 Android
