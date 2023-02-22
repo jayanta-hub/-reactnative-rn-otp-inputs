@@ -24,7 +24,7 @@
     "url": "git+https://github.com/jayanta-hub/rn-otp-inputs.git"
   },
   "author": "jayanta garu <jayanta.garu@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jayanta-hub/rn-otp-inputs/issues"
   },
