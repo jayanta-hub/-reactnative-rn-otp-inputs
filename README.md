@@ -107,8 +107,16 @@ const  [value,  setValue]  =  useState('');
 | isButtonDisplay     | `No`     | `Boolean`  | `true`                                      | If you don't want to use Button, then you have to pass `false` . `NOTE` If the value is `true` and you don't want to use any button for submit , then you have to use `autoSubmit` props. |
 | isResendOtpDisplay  | `No`     | `Boolean`  | `true`                                      | If you don't want to use Resend OTP Button, then you have to pass `false`.                                                                                                                |
 
-## Contributors
+## Contributing
+
+Pull requests are always welcome! Feel free to open a new GitHub issue for any changes that can be made.
+
+## Author
 
 ![jayanta7381](https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci81ZWZhZGY0MjdjNzliM2YxZDY0ODcxNzI0NjI2NWQzNz9zaXplPTEwMCZkZWZhdWx0PXJldHJvIn0.Ujb96nLBkk2Z0K5NilEVjWj-0Kpa6NTFeIV8c5Ip-mQ)
 
-`Jayanta Garu`
+[Jayanta Garu](https://github.com/jayanta-hub)
+
+## License
+
+MIT
