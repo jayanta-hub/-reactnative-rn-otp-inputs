@@ -41,7 +41,7 @@ const RnOtpInputs: React.FC<RnOtpInputsProps> = props => {
     isButtonDisplay = true,
     isResendOtpDisplay = true,
   } = props;
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<TextInput>();
   const [otp, setOtp] = useState<number[]>(
     new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
       '',
@@ -86,29 +86,18 @@ const RnOtpInputs: React.FC<RnOtpInputsProps> = props => {
       }),
     ]).start();
   };
-
   /**
-   * Resend the OTP and reset the state.
+   * Resets the OTP state and triggers the resend functionality.
    *
-   * This function sets the OTP to an empty array, clears any error messages,
-   * resets the active OTP index to 0, sets the resend flag to true, and
-   * calls the onResendClick function.
-   *
-   * @return {void} This function does not return anything.
+   * @return {void} This function does not return any value.
    */
   const ResendHandler = (): void => {
-    console.log('ResendHandler');
-    setOtp(
-      new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
-        '',
-      ),
-    ),
-      setIserror(false),
-      setActiveOtpIndex(0),
-      setIsResend(true),
-      onResendClick();
+    setOtp(new Array(pinCount).fill(''));
+    setIserror(false);
+    setActiveOtpIndex(0);
+    setIsResend(true);
+    onResendClick();
   };
-
   /**
    * Handles changes to the OTP input fields.
    *
@@ -271,9 +260,9 @@ const RnOtpInputs: React.FC<RnOtpInputsProps> = props => {
                     }}>
                     <TextInput
                       key={index}
-                      ref={index === activeOtpIndex ? inputRef : null}
+                      ref={index === activeOtpIndex ? inputRef : undefined}
                       autoCorrect={false}
-                      value={`${otp[index]}`}
+                      value={otp[index]}
                       maxLength={1}
                       keyboardType={keyboardType}
                       editable={true}
@@ -400,7 +389,7 @@ const styles = StyleSheet.create({
     marginHorizontal: scale(30),
     flexWrap: 'wrap',
   },
-  buttonStyle:{
+  buttonStyle: {
     flex: 1,
     backgroundColor: '#349beb',
     height: scale(40),
@@ -416,19 +405,18 @@ const styles = StyleSheet.create({
     marginHorizontal: scale(0),
     marginVertical: scale(0),
   },
-  buttonTitleStyle:{
+  buttonTitleStyle: {
     fontSize: scale(15),
     color: '#FFFFFF',
   },
-  resendTextStyle:{
+  resendTextStyle: {
     fontSize: scale(15),
     color: '#404B69',
   },
-  errorMsgStyle:{
+  errorMsgStyle: {
     marginLeft: scale(30),
     marginTop: scale(5),
     fontSize: scale(12),
     color: 'red',
-  }
-
+  },
 });
