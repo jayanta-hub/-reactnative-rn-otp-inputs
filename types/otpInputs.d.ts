@@ -10,7 +10,7 @@ export interface RnOtpInputsProps {
     textColor?: string;
     borderWidth?: number;
     borderColor?: string;
-    keyboardType?: "phone-pad";
+    keyboardType?: "number-pad";
     buttonTitle?: string;
     Minute?: number;
     Second?: number;

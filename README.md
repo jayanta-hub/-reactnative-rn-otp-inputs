@@ -80,7 +80,7 @@ const  [value,  setValue]  =  useState('');
   Minute={1}
   Second={0}
   onlyResendOtp={false}
-  onResendClick={false}
+  onResendClick={()=>{}}
 />
 ```
 
