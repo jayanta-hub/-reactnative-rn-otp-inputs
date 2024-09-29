@@ -10,46 +10,71 @@ import {
   Animated,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   guidelineBaseWidth,
   scale,
 } from "./src/Infrastructure/utils/screenUtility";
 const RnOtpInputs = (props) => {
   const {
-    onSubmit,
-    secureTextEntry,
-    autoSubmit,
-    mode,
-    borderRadius,
-    onChageValue,
-    bgcolor,
-    textColor,
-    borderWidth,
-    borderColor,
-    keyboardType,
-    buttonTitle,
-    Minute,
-    Second,
-    buttonStyle,
-    onlyResendOtp,
-    onResendClick,
-    buttonTitleStyle,
-    resendTextStyle,
-    inputHeightAndWidth,
-    isError,
-    errorMsgStyle,
-    errorMsg,
-    isButtonDisplay,
-    isResendOtpDisplay,
+    onSubmit = () => {},
+    secureTextEntry = false,
+    autoSubmit = false,
+    mode = "rectangle",
+    borderRadius = 6,
+    onChageValue = () => {},
+    bgcolor = "#D9E3F6",
+    textColor = "#000000",
+    borderWidth = 1,
+    borderColor = "#A768F1",
+    keyboardType = "number-pad",
+    buttonTitle = "Verify & Proceed",
+    Minute = 1,
+    Second = 0,
+    buttonStyle = {
+      flex: 1,
+      backgroundColor: "#349beb",
+      height: scale(40),
+      fontSize: scale(8),
+      borderColor: "",
+      borderRadius: scale(6),
+      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "center",
+      marginTop: scale(10),
+      marginBottom: scale(0),
+      marginLeft: scale(0),
+      marginHorizontal: scale(0),
+      marginVertical: scale(0),
+    },
+    onlyResendOtp = false,
+    onResendClick = () => {},
+    buttonTitleStyle = {
+      fontSize: scale(15),
+      color: "#FFFFFF",
+    },
+    resendTextStyle = {
+      fontSize: scale(15),
+      color: "#404B69",
+    },
+    inputHeightAndWidth = 50,
+    isError = false,
+    errorMsgStyle = {
+      marginLeft: scale(30),
+      marginTop: scale(5),
+      fontSize: scale(12),
+      color: "red",
+    },
+    errorMsg = "Invalid OTP.",
+    isButtonDisplay = true,
+    isResendOtpDisplay = true,
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
     new Array(
       props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
         ? props.pinCount
-        : 4,
-    ).fill(""),
+        : 4
+    ).fill("")
   );
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const [minute, setMinute] = useState(Minute);
@@ -86,8 +111,8 @@ const RnOtpInputs = (props) => {
       new Array(
         props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
           ? props.pinCount
-          : 4,
-      ).fill(""),
+          : 4
+      ).fill("")
     ),
       setIserror(false),
       setActiveOtpIndex(0),
@@ -140,8 +165,8 @@ const RnOtpInputs = (props) => {
       new Array(
         props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
           ? props.pinCount
-          : 4,
-      ).fill(""),
+          : 4
+      ).fill("")
     );
   }, [props.pinCount]);
 
@@ -207,7 +232,7 @@ const RnOtpInputs = (props) => {
                           ? 0
                           : activeOtpIndex === index
                           ? borderWidth
-                          : 0,
+                          : 0
                       ),
                       borderRadius: scale(
                         mode === "circle"
@@ -216,7 +241,7 @@ const RnOtpInputs = (props) => {
                           ? 0
                           : mode === "rectangle"
                           ? borderRadius
-                          : borderRadius,
+                          : borderRadius
                       ),
                       backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                       marginHorizontal:
@@ -258,7 +283,7 @@ const RnOtpInputs = (props) => {
                             ? inputHeightAndWidth
                               ? inputHeightAndWidth
                               : 45
-                            : 50,
+                            : 50
                         ),
                         width: scale(
                           props.pinCount === 4 && props.pinCount < 7
@@ -273,7 +298,7 @@ const RnOtpInputs = (props) => {
                             ? props.inputHeightAndWidth
                               ? props.inputHeightAndWidth
                               : 45
-                            : 50,
+                            : 50
                         ),
                         textAlign: "center",
                         fontSize: scale(22),
@@ -286,7 +311,7 @@ const RnOtpInputs = (props) => {
                             ? 0
                             : mode === "rectangle"
                             ? borderRadius
-                            : borderRadius,
+                            : borderRadius
                         ),
                         backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
                         paddingBottom: 0,
@@ -369,91 +394,6 @@ const RnOtpInputs = (props) => {
       </SafeAreaView>
     </>
   );
-};
-
-RnOtpInputs.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  pinCount: PropTypes.number.isRequired,
-  secureTextEntry: PropTypes.bool,
-  autoSubmit: PropTypes.bool,
-  mode: PropTypes.string,
-  onChageValue: PropTypes.func,
-  bgcolor: PropTypes.string,
-  textColor: PropTypes.string,
-  borderColor: PropTypes.string,
-  keyboardType: PropTypes.string,
-  borderWidth: PropTypes.number,
-  buttonTitle: PropTypes.string,
-  Minute: PropTypes.number,
-  Second: PropTypes.number,
-  borderRadius: PropTypes.number,
-  buttonStyle: PropTypes.object,
-  onlyResendOtp: PropTypes.bool,
-  onResendClick: PropTypes.func,
-  buttonTitleStyle: PropTypes.object,
-  resendTextStyle: PropTypes.object,
-  isError: PropTypes.bool,
-  errorMsgStyle: PropTypes.object,
-  errorMsg: PropTypes.string,
-  isButtonDisplay: PropTypes.bool,
-  isResendOtpDisplay: PropTypes.bool,
-};
-
-RnOtpInputs.defaultProps = {
-  /**
-   * ? not required, this prop mentioned as required in propTypes
-   */
-  // pinCount: 0,
-  secureTextEntry: false,
-  autoSubmit: false,
-  mode: "rectangle",
-  bgcolor: "#D9E3F6",
-  textColor: "#000000",
-  borderWidth: 1,
-  borderRadius: 6,
-  borderColor: "#A768F1",
-  keyboardType: "number-pad",
-  buttonTitle: "Verify & Proceed",
-  Minute: 1,
-  Second: 0,
-  onChageValue: () => {},
-  onSubmit: (e) => {},
-  buttonStyle: {
-    flex: 1,
-    backgroundColor: "#349beb",
-    height: scale(40),
-    fontSize: scale(8),
-    borderColor: "",
-    borderRadius: scale(6),
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: scale(10),
-    marginBottom: scale(0),
-    marginLeft: scale(0),
-    marginHorizontal: scale(0),
-    marginVertical: scale(0),
-  },
-  onlyResendOtp: false,
-  onResendClick: () => {},
-  buttonTitleStyle: {
-    fontSize: scale(15),
-    color: "#FFFFFF",
-  },
-  resendTextStyle: {
-    fontSize: scale(15),
-    color: "#404B69",
-  },
-  isError: false,
-  errorMsgStyle: {
-    marginLeft: scale(30),
-    marginTop: scale(5),
-    fontSize: scale(12),
-    color: "red",
-  },
-  errorMsg: "Invalid OTP.",
-  isButtonDisplay: true,
-  isResendOtpDisplay: true,
 };
 export default RnOtpInputs;
 
