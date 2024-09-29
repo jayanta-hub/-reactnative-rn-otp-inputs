@@ -31,11 +31,11 @@ or
 
 This packgae will support react@^17.0.0, react@^18.0.0,react-native@^0.68.0 to react-native@^0.75.3, . Make sure you have install respective viersion.
 
-`npm install --save react@17.0.0 react-native@0.68.0`
+`npm install --save react@17.0.0 react-native@latest`
 
 or
 
-`yarn add react@17.0.0 react-native@0.68.0`
+`yarn add react@17.0.0 react-native@latest`
 
 ## Basic Usage
 
