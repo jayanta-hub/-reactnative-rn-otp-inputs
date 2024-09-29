@@ -1,6 +1,6 @@
 {
   "name": "rn-otp-inputs",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "rn-otp-inputs",
   "main": "index.tsx",
   "scripts": {

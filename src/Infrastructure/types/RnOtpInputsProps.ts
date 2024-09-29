@@ -5,7 +5,7 @@ export interface RnOtpInputsProps {
     autoSubmit?: boolean;
     mode?: "rectangle" | "flat"| "circle";
     borderRadius?: number;
-    onChageValue?: (otp: string) => void;
+    onChageValue?: (otp: number) => void;
     bgColor?: string;
     textColor?: string;
     borderWidth?: number;
@@ -17,4 +17,12 @@ export interface RnOtpInputsProps {
     buttonStyle?: object;
     onlyResendOtp?: boolean;
     onResendClick?: () => void;
+    buttonTitleStyle?: object;
+    resendTextStyle?: object;
+    isError?: boolean;
+    inputHeightAndWidth?:number;
+    errorMsgStyle?: object;
+    errorMsg?: string;
+    isButtonDisplay?: boolean;
+    isResendOtpDisplay?: boolean;
 }
