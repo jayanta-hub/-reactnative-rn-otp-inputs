@@ -67,7 +67,6 @@ const  [value,  setValue]  =  useState('');
   pinCount={4}
   mode='rectangle'
   onSubmit={()=>{}}
-  maskText={false}
   autoSubmit={true}
   borderRadius={6}
   borderWidth={1}
@@ -91,7 +90,6 @@ const  [value,  setValue]  =  useState('');
 | pinCount            | `Yes`    | `Number`   | `4`                                         | Number of digits in the component , range is 4-6.                                                                                                                                         |
 | onSubmit            | `Yes`    | `Function` | `()=>{}`                                    | Callback when Submit Button is Click.                                                                                                                                                     |
 | mode                | `No`     | `String`   | `rectangle`                                 | `mode` can be rectangle, flat or circle.                                                                                                                                                  |
-| maskText            | `No`     | `Boolean`  | `false`                                     | Hide contents of text fields .                                                                                                                                                            |
 | autoSubmit          | `No`     | `Boolean`  | `false`                                     | Callback when the digits are filled . `Note :` If value is `true` then we can get `entered value` from `onSubmit`. e.g.` onSubmit={(value)=>{console.log(value)}}`                        |
 | borderRadius        | `No`     | `Number`   | `6`                                         | Change Border Radius of input field. `Note : `borderRadius will apply when mode is `reactangle`                                                                                           |
 | borderColor         | `No`     | `String`   | `#A768F1`                                   | Change Border Color of input field.                                                                                                                                                       |

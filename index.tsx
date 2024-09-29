@@ -24,7 +24,7 @@ const RnOtpInputs:React.FC<RnOtpInputsProps> = (props) => {
     mode = "rectangle",
     borderRadius = 6,
     onChageValue = () => {},
-    bgcolor = "#D9E3F6",
+    bgColor = "#D9E3F6",
     textColor = "#000000",
     borderWidth = 1,
     borderColor = "#A768F1",

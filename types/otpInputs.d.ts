@@ -6,7 +6,7 @@ export interface RnOtpInputsProps {
     mode?: "rectangle" | "flat"| "circle";
     borderRadius?: number;
     onChageValue?: (otp: string) => void;
-    bgcolor?: string;
+    bgColor?: string;
     textColor?: string;
     borderWidth?: number;
     borderColor?: string;
