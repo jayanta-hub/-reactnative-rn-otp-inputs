@@ -82,6 +82,15 @@ const RnOtpInputs = (props) => {
   const [isResend, setIsResend] = useState(false);
   const [iserror, setIserror] = useState("");
   const [shakeAnimation, setShakeAnimation] = useState(new Animated.Value(0));
+
+  /**
+   * Starts a shake animation sequence.
+   *
+   * This function initiates a series of animations that move the shakeAnimation
+   * value between 10, -10, and back to 0, creating a shaking effect.
+   *
+   * @return {void} No return value, animation is started directly.
+   */
   const startShake = () => {
     Animated.sequence([
       Animated.timing(shakeAnimation, {
@@ -106,6 +115,16 @@ const RnOtpInputs = (props) => {
       }),
     ]).start();
   };
+
+  /**
+   * Resend the OTP and reset the state.
+   *
+   * This function sets the OTP to an empty array, clears any error messages,
+   * resets the active OTP index to 0, sets the resend flag to true, and
+   * calls the onResendClick function.
+   *
+   * @return {void} This function does not return anything.
+   */
   const ResendHandler = () => {
     setOtp(
       new Array(
@@ -119,6 +138,18 @@ const RnOtpInputs = (props) => {
       setIsResend(true),
       onResendClick();
   };
+
+  /**
+   * Handles changes to the OTP input fields.
+   *
+   * Updates the OTP state with the new input value, moves the active index forward or backward based on the input,
+   * and triggers the onChageValue callback with the updated OTP value. If autoSubmit is enabled, it also calls the
+   * onSubmit callback when the active index reaches the last input field.
+   *
+   * @param {object} e - The event object containing the input text.
+   * @param {number} index - The index of the input field that triggered the change event.
+   * @return {void} No return value.
+   */
   const ChangeHandler = (e, index) => {
     const { text } = e.nativeEvent;
     const newOtp = [...otp];
@@ -139,6 +170,14 @@ const RnOtpInputs = (props) => {
         : null
       : null;
   };
+
+  /**
+   * Handles key press events for OTP input fields, specifically for backspace and enter keys.
+   *
+   * @param {object} e - The event object containing information about the key press.
+   * @param {number} index - The current index of the OTP input field.
+   * @return {void} No return value, the function modifies state directly.
+   */
   const OnKeyHandler = (e, index) => {
     /**
      * ? When Enter BackSpace
@@ -213,7 +252,7 @@ const RnOtpInputs = (props) => {
         >
           <View style={styles.container}>
             <View style={styles.containerWrap}>
-              {otp.map((item, index) => {
+              {otp.map((_, index) => {
                 return (
                   <Animated.View
                     key={index}
