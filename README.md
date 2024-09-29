@@ -37,6 +37,14 @@ or
 
 `yarn add prop-types@15.8.1 react@17.0.0 react-native@0.68.0`
 
+This packgae all will support react@^17.0.0, react@^18.0.0,react-native@^0.75.0, prop-types@^15.8.1, . Make sure you have install respective viersion.
+
+`npm install --save prop-types@15.8.1 react@17.0.0 react-native@latest`
+
+or
+
+`yarn add prop-types@15.8.1 react@17.0.0 react-native@0.68.0`
+
 ## Basic Usage
 
 ```
