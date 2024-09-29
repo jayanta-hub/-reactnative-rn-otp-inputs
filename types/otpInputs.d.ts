@@ -15,5 +15,6 @@ export interface RnOtpInputsProps {
     Minute?: number;
     Second?: number;
     buttonStyle?: object;
+    onlyResendOtp?: boolean;
     onResendClick?: () => void;
 }
