@@ -9,7 +9,7 @@
   "peerDependencies": {
     "prop-types": "^15.8.1",
     "react": "^17.0.0 || ^18.0.0",
-    "react-native": "^0.68.0 || ^0.69.0 || ^0.70.0 || ^0.71.0"
+    "react-native": "^0.75.0"
   },
   "keywords": [
     "react",
