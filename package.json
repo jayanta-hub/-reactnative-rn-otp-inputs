@@ -1,10 +1,11 @@
 {
   "name": "rn-otp-inputs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "rn-otp-inputs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir dist"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",

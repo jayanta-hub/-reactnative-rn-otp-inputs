@@ -16,6 +16,7 @@ import {
 } from "./src/Infrastructure/utils/screenUtility";
 const RnOtpInputs = (props) => {
   const {
+    pinCount = 4,
     onSubmit = () => {},
     secureTextEntry = false,
     autoSubmit = false,
@@ -70,11 +71,9 @@ const RnOtpInputs = (props) => {
   } = props;
   const inputRef = useRef();
   const [otp, setOtp] = useState(
-    new Array(
-      props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
-        ? props.pinCount
-        : 4
-    ).fill("")
+    new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
+      ""
+    )
   );
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const [minute, setMinute] = useState(Minute);
@@ -127,11 +126,9 @@ const RnOtpInputs = (props) => {
    */
   const ResendHandler = () => {
     setOtp(
-      new Array(
-        props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
-          ? props.pinCount
-          : 4
-      ).fill("")
+      new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
+        ""
+      )
     ),
       setIserror(false),
       setActiveOtpIndex(0),
@@ -155,7 +152,7 @@ const RnOtpInputs = (props) => {
     const newOtp = [...otp];
     newOtp[index] = text;
     setOtp(newOtp);
-    e.nativeEvent?.text
+    text
       ? setActiveOtpIndex(index + 1)
       : index > 0
       ? setActiveOtpIndex(index - 1)
@@ -165,7 +162,7 @@ const RnOtpInputs = (props) => {
      */
     onChageValue(newOtp.join("").toString());
     autoSubmit
-      ? activeOtpIndex === props.pinCount - 1
+      ? activeOtpIndex === pinCount - 1
         ? onSubmit(newOtp.join("").toString())
         : null
       : null;
@@ -201,13 +198,11 @@ const RnOtpInputs = (props) => {
    */
   useEffect(() => {
     setOtp(
-      new Array(
-        props.pinCount && props.pinCount <= 6 && props.pinCount >= 3
-          ? props.pinCount
-          : 4
-      ).fill("")
+      new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
+        ""
+      )
     );
-  }, [props.pinCount]);
+  }, [pinCount]);
 
   /**
    * ? For Focus on each box
@@ -310,32 +305,32 @@ const RnOtpInputs = (props) => {
                       secureTextEntry={secureTextEntry}
                       style={{
                         height: scale(
-                          props.pinCount === 4 && props.pinCount < 7
+                          pinCount === 4 && pinCount < 7
                             ? inputHeightAndWidth
                               ? inputHeightAndWidth
                               : 50
-                            : props.pinCount === 5 && props.pinCount < 7
+                            : pinCount === 5 && pinCount < 7
                             ? inputHeightAndWidth
                               ? inputHeightAndWidth
                               : 55
-                            : props.pinCount === 6 && props.pinCount < 7
+                            : pinCount === 6 && pinCount < 7
                             ? inputHeightAndWidth
                               ? inputHeightAndWidth
                               : 45
                             : 50
                         ),
                         width: scale(
-                          props.pinCount === 4 && props.pinCount < 7
-                            ? props.inputHeightAndWidth
-                              ? props.inputHeightAndWidth
+                          pinCount === 4 && pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
                               : 50
-                            : props.pinCount === 5 && props.pinCount < 7
-                            ? props.inputHeightAndWidth
-                              ? props.inputHeightAndWidth
+                            : pinCount === 5 && pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
                               : 55
-                            : props.pinCount === 6 && props.pinCount < 7
-                            ? props.inputHeightAndWidth
-                              ? props.inputHeightAndWidth
+                            : pinCount === 6 && pinCount < 7
+                            ? inputHeightAndWidth
+                              ? inputHeightAndWidth
                               : 45
                             : 50
                         ),
@@ -418,10 +413,10 @@ const RnOtpInputs = (props) => {
               >
                 <TouchableOpacity
                   onPress={onSubmit}
-                  disabled={activeOtpIndex === props.pinCount ? false : true}
+                  disabled={activeOtpIndex === pinCount ? false : true}
                   style={{
                     ...buttonStyle,
-                    opacity: activeOtpIndex === props.pinCount ? 1 : 0.5,
+                    opacity: activeOtpIndex === pinCount ? 1 : 0.5,
                   }}
                 >
                   <Text style={buttonTitleStyle}>{buttonTitle}</Text>
