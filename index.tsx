@@ -278,7 +278,7 @@ const RnOtpInputs:React.FC<RnOtpInputsProps> = (props) => {
                           ? borderRadius
                           : borderRadius
                       ),
-                      backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                      backgroundColor: mode === "flat" ? "#FFFFFF" : bgColor,
                       marginHorizontal:
                         Platform.isPad || guidelineBaseWidth > 500
                           ? scale(40)
@@ -348,7 +348,7 @@ const RnOtpInputs:React.FC<RnOtpInputsProps> = (props) => {
                             ? borderRadius
                             : borderRadius
                         ),
-                        backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                        backgroundColor: mode === "flat" ? "#FFFFFF" : bgColor,
                         paddingBottom: 0,
                         paddingTop: 0,
                       }}
