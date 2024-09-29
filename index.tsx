@@ -14,7 +14,8 @@ import {
   guidelineBaseWidth,
   scale,
 } from "./src/Infrastructure/utils/screenUtility";
-const RnOtpInputs = (props) => {
+import {RnOtpInputsProps} from "./types/otpInputs";
+const RnOtpInputs:React.FC<RnOtpInputsProps> = (props) => {
   const {
     pinCount = 4,
     onSubmit = () => {},
@@ -70,17 +71,17 @@ const RnOtpInputs = (props) => {
     isResendOtpDisplay = true,
   } = props;
   const inputRef = useRef();
-  const [otp, setOtp] = useState(
+  const [otp, setOtp] = useState<number>(
     new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
       ""
     )
   );
-  const [activeOtpIndex, setActiveOtpIndex] = useState(0);
-  const [minute, setMinute] = useState(Minute);
-  const [second, setSecond] = useState(Second);
-  const [isResend, setIsResend] = useState(false);
-  const [iserror, setIserror] = useState("");
-  const [shakeAnimation, setShakeAnimation] = useState(new Animated.Value(0));
+  const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
+  const [minute, setMinute] = useState<number>(Minute);
+  const [second, setSecond] = useState<number>(Second);
+  const [isResend, setIsResend] = useState<boolean>(false);
+  const [iserror, setIserror] = useState<string>("");
+  const [shakeAnimation, setShakeAnimation] = useState<number>(new Animated.Value(0));
 
   /**
    * Starts a shake animation sequence.
@@ -90,7 +91,7 @@ const RnOtpInputs = (props) => {
    *
    * @return {void} No return value, animation is started directly.
    */
-  const startShake = () => {
+  const startShake = (): void => {
     Animated.sequence([
       Animated.timing(shakeAnimation, {
         toValue: 10,
@@ -124,7 +125,7 @@ const RnOtpInputs = (props) => {
    *
    * @return {void} This function does not return anything.
    */
-  const ResendHandler = () => {
+  const ResendHandler = (): void => {
     setOtp(
       new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
         ""
@@ -147,7 +148,7 @@ const RnOtpInputs = (props) => {
    * @param {number} index - The index of the input field that triggered the change event.
    * @return {void} No return value.
    */
-  const ChangeHandler = (e, index) => {
+  const ChangeHandler = (e: { nativeEvent: { text: string; }; }, index: number): void => {
     const { text } = e.nativeEvent;
     const newOtp = [...otp];
     newOtp[index] = text;
@@ -175,7 +176,7 @@ const RnOtpInputs = (props) => {
    * @param {number} index - The current index of the OTP input field.
    * @return {void} No return value, the function modifies state directly.
    */
-  const OnKeyHandler = (e, index) => {
+  const OnKeyHandler = (e: { nativeEvent: { key: string; }; }, index: number): void => {
     /**
      * ? When Enter BackSpace
      */
@@ -247,7 +248,7 @@ const RnOtpInputs = (props) => {
         >
           <View style={styles.container}>
             <View style={styles.containerWrap}>
-              {otp.map((_, index) => {
+              {otp.map((_: any, index: number) => {
                 return (
                   <Animated.View
                     key={index}
@@ -300,8 +301,8 @@ const RnOtpInputs = (props) => {
                       maxLength={1}
                       keyboardType={keyboardType}
                       editable={true}
-                      onChange={(e) => ChangeHandler(e, index)}
-                      onKeyPress={(e) => OnKeyHandler(e, index)}
+                      onChange={(e: any) => ChangeHandler(e, index)}
+                      onKeyPress={(e: any) => OnKeyHandler(e, index)}
                       secureTextEntry={secureTextEntry}
                       style={{
                         height: scale(
