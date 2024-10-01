@@ -1,8 +1,8 @@
-# rn-otp-inputs
+# rn-otp-inputs TS
 
 <img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/react"> <img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/react-native"> <img alt="npm peer dependency version" src="https://img.shields.io/npm/dependency-version/rn-otp-inputs/peer/prop-types"> <img alt="npm" src="https://img.shields.io/npm/dm/rn-otp-inputs"> <img alt="GitHub" src="https://img.shields.io/github/license/jayanta-hub/rn-otp-inputs">
 
-**rn-otp-inputs** is a tiny Javascript library which provides an elegant UI for the end user to input one time passcode (OTP). It handles autocomplete functionality and it display remaining time for OTP. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI, but you can always customize the appearance as you like.
+**rn-otp-inputs** is a tiny Javascript/typescripts library which provides an elegant UI for the end user to input one time passcode (OTP). It handles autocomplete functionality and it display remaining time for OTP. It also features a carefully crafted flow to handle edge cases for volatile user gestures. We provide default UI, but you can always customize the appearance as you like.
 
 ## ScreenShot
 
@@ -29,21 +29,13 @@ or
 
 ### NOTES:
 
-This packgae will support react@^17.0.0, react@^18.0.0,react-native@^0.68.0,react-native@^0.69.0,react-native@^0.70.0, react-native@^0.71.0, prop-types@^15.8.1, . Make sure you have install respective viersion.
+This packgae will support react@^17.0.0, react@^18.0.0,react-native@^0.68.0 to react-native@^0.75.3, . Make sure you have install respective viersion.
 
-`npm install --save prop-types@15.8.1 react@17.0.0 react-native@0.68.0`
-
-or
-
-`yarn add prop-types@15.8.1 react@17.0.0 react-native@0.68.0`
-
-This packgae all will support react@^17.0.0, react@^18.0.0,react-native@^0.75.0, prop-types@^15.8.1, . Make sure you have install respective viersion.
-
-`npm install --save prop-types@15.8.1 react@17.0.0 react-native@latest`
+`npm install --save react@17.0.0 react-native@latest`
 
 or
 
-`yarn add prop-types@15.8.1 react@17.0.0 react-native@0.68.0`
+`yarn add react@17.0.0 react-native@latest`
 
 ## Basic Usage
 
@@ -67,7 +59,6 @@ const  [value,  setValue]  =  useState('');
   pinCount={4}
   mode='rectangle'
   onSubmit={()=>{}}
-  maskText={false}
   autoSubmit={true}
   borderRadius={6}
   borderWidth={1}
@@ -80,7 +71,7 @@ const  [value,  setValue]  =  useState('');
   Minute={1}
   Second={0}
   onlyResendOtp={false}
-  onResendClick={false}
+  onResendClick={()=>{}}
 />
 ```
 
@@ -91,7 +82,6 @@ const  [value,  setValue]  =  useState('');
 | pinCount            | `Yes`    | `Number`   | `4`                                         | Number of digits in the component , range is 4-6.                                                                                                                                         |
 | onSubmit            | `Yes`    | `Function` | `()=>{}`                                    | Callback when Submit Button is Click.                                                                                                                                                     |
 | mode                | `No`     | `String`   | `rectangle`                                 | `mode` can be rectangle, flat or circle.                                                                                                                                                  |
-| maskText            | `No`     | `Boolean`  | `false`                                     | Hide contents of text fields .                                                                                                                                                            |
 | autoSubmit          | `No`     | `Boolean`  | `false`                                     | Callback when the digits are filled . `Note :` If value is `true` then we can get `entered value` from `onSubmit`. e.g.` onSubmit={(value)=>{console.log(value)}}`                        |
 | borderRadius        | `No`     | `Number`   | `6`                                         | Change Border Radius of input field. `Note : `borderRadius will apply when mode is `reactangle`                                                                                           |
 | borderColor         | `No`     | `String`   | `#A768F1`                                   | Change Border Color of input field.                                                                                                                                                       |

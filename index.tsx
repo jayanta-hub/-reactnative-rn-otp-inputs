@@ -8,79 +8,51 @@ import {
   SafeAreaView,
   ScrollView,
   Animated,
-} from "react-native";
-import React, { useRef, useState, useEffect } from "react";
-import {
-  guidelineBaseWidth,
-  scale,
-} from "./src/Infrastructure/utils/screenUtility";
-const RnOtpInputs = (props) => {
+} from 'react-native';
+import React, {useRef, useState, useEffect} from 'react';
+import {guidelineBaseWidth, scale} from './src/Infrastructure/utils/screenUtility';
+import {RnOtpInputsProps} from './src/Infrastructure/types/RnOtpInputsProps';
+const RnOtpInputs: React.FC<RnOtpInputsProps> = props => {
   const {
     pinCount = 4,
     onSubmit = () => {},
     secureTextEntry = false,
     autoSubmit = false,
-    mode = "rectangle",
+    mode = 'rectangle',
     borderRadius = 6,
     onChageValue = () => {},
-    bgcolor = "#D9E3F6",
-    textColor = "#000000",
+    bgColor = '#D9E3F6',
+    textColor = '#000000',
     borderWidth = 1,
-    borderColor = "#A768F1",
-    keyboardType = "number-pad",
-    buttonTitle = "Verify & Proceed",
+    borderColor = '#A768F1',
+    keyboardType = 'number-pad',
+    buttonTitle = 'Verify & Proceed',
     Minute = 1,
     Second = 0,
-    buttonStyle = {
-      flex: 1,
-      backgroundColor: "#349beb",
-      height: scale(40),
-      fontSize: scale(8),
-      borderColor: "",
-      borderRadius: scale(6),
-      alignItems: "center",
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: scale(10),
-      marginBottom: scale(0),
-      marginLeft: scale(0),
-      marginHorizontal: scale(0),
-      marginVertical: scale(0),
-    },
+    buttonStyle = styles.buttonStyle,
     onlyResendOtp = false,
     onResendClick = () => {},
-    buttonTitleStyle = {
-      fontSize: scale(15),
-      color: "#FFFFFF",
-    },
-    resendTextStyle = {
-      fontSize: scale(15),
-      color: "#404B69",
-    },
+    buttonTitleStyle = styles.buttonTitleStyle,
+    resendTextStyle = styles.resendTextStyle,
     inputHeightAndWidth = 50,
     isError = false,
-    errorMsgStyle = {
-      marginLeft: scale(30),
-      marginTop: scale(5),
-      fontSize: scale(12),
-      color: "red",
-    },
-    errorMsg = "Invalid OTP.",
+    errorMsgStyle = styles.errorMsgStyle,
+    errorMsg = 'Invalid OTP.',
     isButtonDisplay = true,
     isResendOtpDisplay = true,
   } = props;
-  const inputRef = useRef();
-  const [otp, setOtp] = useState(
+  const inputRef = useRef<TextInput>();
+  const [otp, setOtp] = useState<number[]>(
     new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
-      ""
-    )
+      '',
+    ),
   );
-  const [activeOtpIndex, setActiveOtpIndex] = useState(0);
-  const [minute, setMinute] = useState(Minute);
-  const [second, setSecond] = useState(Second);
-  const [isResend, setIsResend] = useState(false);
-  const [iserror, setIserror] = useState("");
-  const [shakeAnimation, setShakeAnimation] = useState(new Animated.Value(0));
+  const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
+  const [minute, setMinute] = useState<number>(Minute);
+  const [second, setSecond] = useState<number>(Second);
+  const [isResend, setIsResend] = useState<boolean>(false);
+  const [iserror, setIserror] = useState<boolean>(isError);
+  const [shakeAnimation] = useState<Animated.Value>(new Animated.Value(0));
 
   /**
    * Starts a shake animation sequence.
@@ -90,7 +62,7 @@ const RnOtpInputs = (props) => {
    *
    * @return {void} No return value, animation is started directly.
    */
-  const startShake = () => {
+  const startShake = (): void => {
     Animated.sequence([
       Animated.timing(shakeAnimation, {
         toValue: 10,
@@ -114,28 +86,18 @@ const RnOtpInputs = (props) => {
       }),
     ]).start();
   };
-
   /**
-   * Resend the OTP and reset the state.
+   * Resets the OTP state and triggers the resend functionality.
    *
-   * This function sets the OTP to an empty array, clears any error messages,
-   * resets the active OTP index to 0, sets the resend flag to true, and
-   * calls the onResendClick function.
-   *
-   * @return {void} This function does not return anything.
+   * @return {void} This function does not return any value.
    */
-  const ResendHandler = () => {
-    setOtp(
-      new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
-        ""
-      )
-    ),
-      setIserror(false),
-      setActiveOtpIndex(0),
-      setIsResend(true),
-      onResendClick();
+  const ResendHandler = (): void => {
+    setOtp(new Array(pinCount).fill(''));
+    setIserror(false);
+    setActiveOtpIndex(0);
+    setIsResend(true);
+    onResendClick();
   };
-
   /**
    * Handles changes to the OTP input fields.
    *
@@ -147,10 +109,13 @@ const RnOtpInputs = (props) => {
    * @param {number} index - The index of the input field that triggered the change event.
    * @return {void} No return value.
    */
-  const ChangeHandler = (e, index) => {
-    const { text } = e.nativeEvent;
-    const newOtp = [...otp];
-    newOtp[index] = text;
+  const ChangeHandler = (
+    e: {nativeEvent: {text: string}},
+    index: number,
+  ): void => {
+    const {text} = e.nativeEvent;
+    const newOtp: number[] = [...otp];
+    newOtp[index] = parseInt(text);
     setOtp(newOtp);
     text
       ? setActiveOtpIndex(index + 1)
@@ -160,10 +125,10 @@ const RnOtpInputs = (props) => {
     /**
      * ? For AutoSubmit (After Fill All Input we Can call a Fun)
      */
-    onChageValue(newOtp.join("").toString());
+    onChageValue(parseInt(newOtp.join('')));
     autoSubmit
       ? activeOtpIndex === pinCount - 1
-        ? onSubmit(newOtp.join("").toString())
+        ? onSubmit(parseInt(newOtp.join('')))
         : null
       : null;
   };
@@ -175,11 +140,14 @@ const RnOtpInputs = (props) => {
    * @param {number} index - The current index of the OTP input field.
    * @return {void} No return value, the function modifies state directly.
    */
-  const OnKeyHandler = (e, index) => {
+  const OnKeyHandler = (
+    e: {nativeEvent: {key: string}},
+    index: number,
+  ): void => {
     /**
      * ? When Enter BackSpace
      */
-    e.nativeEvent.key === "Backspace" && index > 0
+    e.nativeEvent.key === 'Backspace' && index > 0
       ? (setActiveOtpIndex(index - 1), setIserror(false))
       : null;
   };
@@ -199,8 +167,8 @@ const RnOtpInputs = (props) => {
   useEffect(() => {
     setOtp(
       new Array(pinCount && pinCount <= 6 && pinCount >= 3 ? pinCount : 4).fill(
-        ""
-      )
+        '',
+      ),
     );
   }, [pinCount]);
 
@@ -243,18 +211,17 @@ const RnOtpInputs = (props) => {
       <SafeAreaView>
         <ScrollView
           nestedScrollEnabled={true}
-          contentContainerStyle={{ flexGrow: 1 }}
-        >
+          contentContainerStyle={{flexGrow: 1}}>
           <View style={styles.container}>
             <View style={styles.containerWrap}>
-              {otp.map((_, index) => {
+              {otp.map((_: any, index: number) => {
                 return (
                   <Animated.View
                     key={index}
                     style={{
                       borderBottomWidth: iserror
                         ? borderWidth
-                        : mode === "flat"
+                        : mode === 'flat'
                         ? 1
                         : activeOtpIndex === index
                         ? borderWidth
@@ -262,22 +229,22 @@ const RnOtpInputs = (props) => {
                       borderWidth: scale(
                         iserror
                           ? borderWidth
-                          : mode === "flat"
+                          : mode === 'flat'
                           ? 0
                           : activeOtpIndex === index
                           ? borderWidth
-                          : 0
+                          : 0,
                       ),
                       borderRadius: scale(
-                        mode === "circle"
+                        mode === 'circle'
                           ? 50
-                          : mode === "flat"
+                          : mode === 'flat'
                           ? 0
-                          : mode === "rectangle"
+                          : mode === 'rectangle'
                           ? borderRadius
-                          : borderRadius
+                          : borderRadius,
                       ),
-                      backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                      backgroundColor: mode === 'flat' ? '#FFFFFF' : bgColor,
                       marginHorizontal:
                         Platform.isPad || guidelineBaseWidth > 500
                           ? scale(40)
@@ -288,66 +255,55 @@ const RnOtpInputs = (props) => {
                           : scale(0),
 
                       padding: scale(0.5),
-                      borderColor: iserror ? "red" : borderColor,
-                      transform: [{ translateX: shakeAnimation }],
-                    }}
-                  >
+                      borderColor: iserror ? 'red' : borderColor,
+                      transform: [{translateX: shakeAnimation}],
+                    }}>
                     <TextInput
                       key={index}
-                      ref={index === activeOtpIndex ? inputRef : null}
+                      ref={index === activeOtpIndex ? inputRef : undefined}
                       autoCorrect={false}
                       value={otp[index]}
                       maxLength={1}
                       keyboardType={keyboardType}
                       editable={true}
-                      onChange={(e) => ChangeHandler(e, index)}
-                      onKeyPress={(e) => OnKeyHandler(e, index)}
+                      onChange={(e: any) => ChangeHandler(e, index)}
+                      onKeyPress={(e: any) => OnKeyHandler(e, index)}
                       secureTextEntry={secureTextEntry}
                       style={{
                         height: scale(
-                          pinCount === 4 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 50
-                            : pinCount === 5 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 55
-                            : pinCount === 6 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 45
-                            : 50
+                          inputHeightAndWidth ??
+                            (pinCount === 4
+                              ? 50
+                              : pinCount === 5
+                              ? 55
+                              : pinCount === 6
+                              ? 45
+                              : 50),
                         ),
                         width: scale(
-                          pinCount === 4 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 50
-                            : pinCount === 5 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 55
-                            : pinCount === 6 && pinCount < 7
-                            ? inputHeightAndWidth
-                              ? inputHeightAndWidth
-                              : 45
-                            : 50
+                          inputHeightAndWidth ??
+                            (pinCount === 4
+                              ? 50
+                              : pinCount === 5
+                              ? 55
+                              : pinCount === 6
+                              ? 45
+                              : 50),
                         ),
-                        textAlign: "center",
+                        textAlign: 'center',
                         fontSize: scale(22),
-                        fontWeight: "500",
+                        fontWeight: '500',
                         color: textColor,
                         borderRadius: scale(
-                          mode === "circle"
+                          mode === 'circle'
                             ? 50
-                            : mode === "flat"
+                            : mode === 'flat'
                             ? 0
-                            : mode === "rectangle"
+                            : mode === 'rectangle'
                             ? borderRadius
-                            : borderRadius
+                            : borderRadius,
                         ),
-                        backgroundColor: mode === "flat" ? "#FFFFFF" : bgcolor,
+                        backgroundColor: mode === 'flat' ? '#FFFFFF' : bgColor,
                         paddingBottom: 0,
                         paddingTop: 0,
                       }}
@@ -361,37 +317,30 @@ const RnOtpInputs = (props) => {
               <View
                 style={{
                   ...styles.containerWrap,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                 <TouchableOpacity
                   onPress={ResendHandler}
                   disabled={
-                    onlyResendOtp
-                      ? false
-                      : minute === 0 && second === 0
+                    onlyResendOtp || (minute === 0 && second === 0)
                       ? false
                       : true
                   }
                   style={{
-                    opacity: onlyResendOtp
-                      ? 1
-                      : minute === 0 && second === 0
-                      ? 1
-                      : 0.5,
-                    justifyContent: "center",
-                    alignItems: "center",
+                    opacity:
+                      onlyResendOtp || (minute === 0 && second === 0) ? 1 : 0.5,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     marginVertical: scale(20),
-                  }}
-                >
+                  }}>
                   <Text style={resendTextStyle}>
                     Resend OPT
                     {minute === 0 &&
                     second === 0 ? null : onlyResendOtp ? null : (
                       <Text style={resendTextStyle}>
-                        {" "}
-                        in{" "}
+                        {' '}
+                        in{' '}
                         {minute !== 0
                           ? `${minute}:${second} sec`
                           : ` ${second} sec`}
@@ -404,21 +353,19 @@ const RnOtpInputs = (props) => {
             {isButtonDisplay ? (
               <View
                 style={{
-                  alignItems: "center",
-                  flexDirection: "row",
-                  justifyContent: "center",
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
                   marginTop: scale(10),
                   marginHorizontal: scale(30),
-                }}
-              >
+                }}>
                 <TouchableOpacity
-                  onPress={onSubmit}
+                  onPress={() => onSubmit(parseInt(otp.join('')))}
                   disabled={activeOtpIndex === pinCount ? false : true}
                   style={{
                     ...buttonStyle,
                     opacity: activeOtpIndex === pinCount ? 1 : 0.5,
-                  }}
-                >
+                  }}>
                   <Text style={buttonTitleStyle}>{buttonTitle}</Text>
                 </TouchableOpacity>
               </View>
@@ -436,10 +383,40 @@ const styles = StyleSheet.create({
     marginVertical: scale(10),
   },
   containerWrap: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: scale(10),
     marginHorizontal: scale(30),
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
+  },
+  buttonStyle: {
+    flex: 1,
+    backgroundColor: '#349beb',
+    height: scale(40),
+    fontSize: scale(8),
+    borderColor: '',
+    borderRadius: scale(6),
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: scale(10),
+    marginBottom: scale(0),
+    marginLeft: scale(0),
+    marginHorizontal: scale(0),
+    marginVertical: scale(0),
+  },
+  buttonTitleStyle: {
+    fontSize: scale(15),
+    color: '#FFFFFF',
+  },
+  resendTextStyle: {
+    fontSize: scale(15),
+    color: '#404B69',
+  },
+  errorMsgStyle: {
+    marginLeft: scale(30),
+    marginTop: scale(5),
+    fontSize: scale(12),
+    color: 'red',
   },
 });
